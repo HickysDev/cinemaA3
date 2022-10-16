@@ -1,17 +1,39 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
-
 package com.mycompany.cinema;
 
-/**
- *
- * @author gabri
- */
 public class Cinema {
-
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+   private String nomeCinema;
+   private String localizacao;
+   private String filmesCartaz;
+   
+    public Cinema (String nomeCinema, String localizacao, String filmesCartaz){
+       this.nomeCinema = nomeCinema;
+       this.localizacao = localizacao;
+       this.filmesCartaz = filmesCartaz;        
+   
+   }
+   
+    public String getNomeCinema() {
+        return nomeCinema;
     }
+
+    public void setNomeCinema(String nomeCinema) {
+        this.nomeCinema = nomeCinema;
+    }
+
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public String getFilmesCartaz() {
+        return filmesCartaz;
+    }
+
+    public void setFilmesCartaz(String filmesCartaz) {
+        this.filmesCartaz = filmesCartaz;
+    }
+
 }
