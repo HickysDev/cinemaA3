@@ -15,5 +15,7 @@ public class Filme {
         this.nomeFilme = nomeFilme;
     }
     
+    public void buscarFilme(){
     
+    }
 }

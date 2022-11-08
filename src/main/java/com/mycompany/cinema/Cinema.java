@@ -35,5 +35,8 @@ public class Cinema {
     public void setFilmesCartaz(String filmesCartaz) {
         this.filmesCartaz = filmesCartaz;
     }
-
+    
+    public void buscarCinema(){
+    
+    }
 }
