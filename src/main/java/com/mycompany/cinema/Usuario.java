@@ -1,18 +1,21 @@
 package com.mycompany.cinema;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 public class Usuario {
     private String nomeUsuario;
-    private String cep;
+    private Integer cep;
     private String email;
-    private boolean tipoUsuario;
 
-    public Usuario(String nomeUsuario, String cep, String email, boolean tipoUsuario) {
+    // Construtor
+    public Usuario(String nomeUsuario, Integer cep, String email) {
         this.nomeUsuario = nomeUsuario;
         this.cep = cep;
         this.email = email;
-        this.tipoUsuario = tipoUsuario;
     }
 
+    //getters e setters
     public String getNomeUsuario() {
         return nomeUsuario;
     }
@@ -21,11 +24,11 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public String getCep() {
+    public Integer getCep() {
         return cep;
     }
 
-    public void setCep(String cep) {
+    public void setCep(Integer cep) {
         this.cep = cep;
     }
 
@@ -36,15 +39,29 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public boolean isTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(boolean tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
     
+    // Fim do getters e setters
     
+    public void inserir(){
+        //Definir comando SQL
+        String sql = "INSERT INTO tb_usuario(nomeUsuario, cep, email) VALUES (?,?,?)";
+        
+        //Abrir conexao com o db
+        ConnectionFactory factory = new ConnectionFactory();
+        try(Connection c = factory.obtemConexao()){
+            // Compila o comando
+            PreparedStatement ps = c.prepareStatement(sql);
+            
+            // Preenche os dados
+            ps.setString(1, nomeUsuario);
+            ps.setInt(2, cep);
+            ps.setString(3, email);
+            
+            //Executar o comando
+            ps.execute();
+        }
+        catch(Exception e){
+        }
+    }
     
 }
