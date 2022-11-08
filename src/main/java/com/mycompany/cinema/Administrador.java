@@ -1,9 +1,13 @@
 package com.mycompany.cinema;
 
-public class Administrador {
+public class Administrador extends Usuario{
+    
+    public Administrador(String nomeUsuario, String cep, String email){
+        super(nomeUsuario, cep, email);
+    }
     
     public void adicionarFilme(){
-    qualqueira coisa shambra
+    
     }
     
     public void excluirFilme(){
@@ -24,6 +28,10 @@ public class Administrador {
     
     public void editarCinema(){
     
+    }
+    
+    public void mostrarAdmin(){
+        System.out.println(this.getNomeUsuario() + this.getCep() + this.getEmail());
     }
     
 }
