@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 public class Usuario {
+    
     private String nomeUsuario;
     private Integer cep;
     private String email;
