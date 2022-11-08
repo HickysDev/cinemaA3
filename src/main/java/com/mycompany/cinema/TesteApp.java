@@ -3,6 +3,10 @@ package com.mycompany.cinema;
 public class TesteApp {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        Administrador admin1 = new Administrador("Julio", "1234567", "Macarrao@gmail.com");
+        
+        admin1.mostrarAdmin();
+        
     }
 }

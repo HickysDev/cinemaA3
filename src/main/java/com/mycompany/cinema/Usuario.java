@@ -1,16 +1,15 @@
 package com.mycompany.cinema;
 
 public class Usuario {
+    
     private String nomeUsuario;
     private String cep;
     private String email;
-    private boolean tipoUsuario;
 
-    public Usuario(String nomeUsuario, String cep, String email, boolean tipoUsuario) {
+    public Usuario(String nomeUsuario, String cep, String email) {
         this.nomeUsuario = nomeUsuario;
         this.cep = cep;
         this.email = email;
-        this.tipoUsuario = tipoUsuario;
     }
 
     public String getNomeUsuario() {
@@ -35,15 +34,7 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public boolean isTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(boolean tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
+    }    
     
     
     
