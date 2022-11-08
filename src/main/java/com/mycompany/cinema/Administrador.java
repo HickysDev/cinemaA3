@@ -3,7 +3,7 @@ package com.mycompany.cinema;
 public class Administrador {
     
     public void adicionarFilme(){
-    qualqueira coisa
+    qualqueira coisa shambra
     }
     
     public void excluirFilme(){
