@@ -2,7 +2,7 @@ package com.mycompany.cinema;
 
 public class Administrador extends Usuario{
     
-    public Administrador(String nomeUsuario, String cep, String email){
+    public Administrador(String nomeUsuario, Integer cep, String email){
         super(nomeUsuario, cep, email);
     }
     
