@@ -8,12 +8,21 @@ public class Usuario {
     private String nomeUsuario;
     private Integer cep;
     private String email;
+    private Integer id;
+    
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
     // Construtor
-    public Usuario(String nomeUsuario, Integer cep, String email) {
+    public Usuario(String nomeUsuario, Integer cep, String email, Integer id) {
         this.nomeUsuario = nomeUsuario;
         this.cep = cep;
         this.email = email;
+        this.id = id;
     }
 
     //getters e setters
@@ -65,4 +74,25 @@ public class Usuario {
         }
     }
     
+    public void atualizar(){
+    //Definir comando SQL
+        String sql = "UPDATE tb_usuario SET nomeUsuario = ?, cep = ?, email = ? WHERE id = ?";
+    //Abrir conexao com o db
+        ConnectionFactory factory = new ConnectionFactory();
+        
+        try(Connection c = factory.obtemConexao()){
+            // Compila o comando
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setString(1, nomeUsuario);
+            ps.setInt(2, cep);
+            ps.setString(3, email);
+            ps.setInt(4, id);
+            
+            //Executar o comando
+            ps.execute();
+  
+        } catch(Exception e){
+        
+        }
+    }
 }

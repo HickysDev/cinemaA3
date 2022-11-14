@@ -7,15 +7,25 @@ public class TesteApp {
     public static void main(String[] args) {
         String menu = "1-Cadastrar, 2-Atualizar, 3-Apagar, 4-Listar, 0-Sair";
         int op;
+        
+        // variaveis
+        String nomeUsuario = null;
+        Integer cep = null;
+        String email = null;
+        Integer id = null;
+        
+        Usuario usu = new Usuario(nomeUsuario, cep, email, id);
+        
         do{
             op = Integer.parseInt(JOptionPane.showInputDialog(menu));
             switch (op){
                 case 1:
-                    String nomeUsuario = JOptionPane.showInputDialog("nome: ");
-                    Integer cep = Integer.parseInt(JOptionPane.showInputDialog("cep: "));
-                    String email = JOptionPane.showInputDialog("email: ");
+                    nomeUsuario = JOptionPane.showInputDialog("nome: ");
+                    cep = Integer.parseInt(JOptionPane.showInputDialog("cep: "));
+                    email = JOptionPane.showInputDialog("email: ");
                     
-                    Usuario usu = new Usuario(nomeUsuario, cep, email);
+                    
+                    
                     usu.setNomeUsuario(nomeUsuario);
                     usu.setCep(cep);
                     usu.setEmail(email);
@@ -23,6 +33,18 @@ public class TesteApp {
                     usu.inserir();
                     break;
                 case 2:
+                    id = Integer.parseInt(JOptionPane.showInputDialog("id: "));
+                    nomeUsuario = JOptionPane.showInputDialog("nome: ");
+                    cep = Integer.parseInt(JOptionPane.showInputDialog("cep: "));
+                    email = JOptionPane.showInputDialog("email: ");
+                    
+                    
+                    usu.setNomeUsuario(nomeUsuario);
+                    usu.setCep(cep);
+                    usu.setEmail(email);
+                    usu.setId(id);
+                    
+                    usu.atualizar();
                     break;
                 case 3:
                     break;
