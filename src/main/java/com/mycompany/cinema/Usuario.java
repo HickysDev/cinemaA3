@@ -6,9 +6,24 @@ import java.sql.PreparedStatement;
 public class Usuario {
     
     private String nomeUsuario;
-    private Integer cep;
+    private String cep;
     private String email;
+    private String senha;
     private Integer id;
+    
+    
+    // Construtor
+    public Usuario(String nomeUsuario, String cep, String email, String senha, Integer id) {
+        this.nomeUsuario = nomeUsuario;
+        this.cep = cep;
+        this.email = email;
+        this.senha = senha;
+        this.id = id;
+    }
+
+
+    //getters e setters
+    
     
     public Integer getId() {
         return id;
@@ -17,15 +32,15 @@ public class Usuario {
     public void setId(Integer id) {
         this.id = id;
     }
-    // Construtor
-    public Usuario(String nomeUsuario, Integer cep, String email, Integer id) {
-        this.nomeUsuario = nomeUsuario;
-        this.cep = cep;
-        this.email = email;
-        this.id = id;
+    
+    public String getSenha() {
+        return senha;
     }
 
-    //getters e setters
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
     public String getNomeUsuario() {
         return nomeUsuario;
     }
@@ -34,11 +49,11 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public Integer getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(Integer cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
@@ -54,7 +69,7 @@ public class Usuario {
     
     public void inserir(){
         //Definir comando SQL
-        String sql = "INSERT INTO tb_usuario(nomeUsuario, cep, email) VALUES (?,?,?)";
+        String sql = "INSERT INTO tb_usuario(nomeUsuario, cep, email, senha) VALUES (?,?,?,?)";
         
         //Abrir conexao com o db
         ConnectionFactory factory = new ConnectionFactory();
@@ -64,9 +79,9 @@ public class Usuario {
             
             // Preenche os dados
             ps.setString(1, nomeUsuario);
-            ps.setInt(2, cep);
+            ps.setString(2, cep);
             ps.setString(3, email);
-            
+            ps.setString(4, senha);
             //Executar o comando
             ps.execute();
         }
@@ -84,7 +99,7 @@ public class Usuario {
             // Compila o comando
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setString(1, nomeUsuario);
-            ps.setInt(2, cep);
+            ps.setString(2, cep);
             ps.setString(3, email);
             ps.setInt(4, id);
             

@@ -10,32 +10,36 @@ public class TesteApp {
         
         // variaveis
         String nomeUsuario = null;
-        Integer cep = null;
+        String cep = null;
         String email = null;
         Integer id = null;
+        String senha = null;
         
-        Usuario usu = new Usuario(nomeUsuario, cep, email, id);
+        Usuario usu = new Usuario(nomeUsuario, cep, email, senha, id);
         
         do{
             op = Integer.parseInt(JOptionPane.showInputDialog(menu));
             switch (op){
-                case 1:
+                case 1 -> {
                     nomeUsuario = JOptionPane.showInputDialog("nome: ");
-                    cep = Integer.parseInt(JOptionPane.showInputDialog("cep: "));
+                    cep = JOptionPane.showInputDialog("cep: ");
                     email = JOptionPane.showInputDialog("email: ");
+                    senha = JOptionPane.showInputDialog("senha: ");
                     
                     
                     
                     usu.setNomeUsuario(nomeUsuario);
                     usu.setCep(cep);
                     usu.setEmail(email);
+                    usu.setSenha(senha);
                     
                     usu.inserir();
                     break;
-                case 2:
+                }
+                case 2 -> {
                     id = Integer.parseInt(JOptionPane.showInputDialog("id: "));
                     nomeUsuario = JOptionPane.showInputDialog("nome: ");
-                    cep = Integer.parseInt(JOptionPane.showInputDialog("cep: "));
+                    cep = JOptionPane.showInputDialog("cep: ");
                     email = JOptionPane.showInputDialog("email: ");
                     
                     
@@ -46,14 +50,14 @@ public class TesteApp {
                     
                     usu.atualizar();
                     break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 0:
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Opção inválida");
+                }
+                case 3 -> {
+                }
+                case 4 -> {
+                }
+                case 0 -> {
+                }
+                default -> JOptionPane.showMessageDialog(null, "Opção inválida");
             }
         }while (op != 0);
     }

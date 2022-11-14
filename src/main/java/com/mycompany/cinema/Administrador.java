@@ -2,8 +2,8 @@ package com.mycompany.cinema;
 
 public class Administrador extends Usuario{
     
-    public Administrador(String nomeUsuario, String cep, String email){
-        super(nomeUsuario, cep, email);
+    public Administrador(String nomeUsuario, String cep, String email, String senha){
+        super(nomeUsuario, cep, email, senha);
     }
     
     public void adicionarFilme(){
