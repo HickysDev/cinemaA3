@@ -2,6 +2,8 @@ package com.mycompany.cinema;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 public class Usuario {
     
@@ -103,6 +105,59 @@ public class Usuario {
             ps.setString(3, email);
             ps.setInt(4, id);
             
+            //Executar o comando
+            ps.execute();
+  
+        } catch(Exception e){
+        
+        }
+    }
+    
+    public void deletar(){
+         //Definir comando SQL
+        String sql = "DELETE FROM tb_usuario WHERE id= ?";
+        
+        //Abrir conexao com o db
+        ConnectionFactory factory = new ConnectionFactory();
+        
+        try(Connection c = factory.obtemConexao()){
+            //Compila o comando
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            //Executar o comando
+            ps.execute();
+  
+        } catch(Exception e){
+        
+        }
+    }
+    
+    public void listar(){
+         //Definir comando SQL (Mostrando todos os valores)
+        String sql = "SELECT * FROM tb_usuario";
+        
+        //Abrir conexao com o db
+        ConnectionFactory factory = new ConnectionFactory();
+        
+        try(Connection c = factory.obtemConexao()){
+            //Compila o comando
+            PreparedStatement ps = c.prepareStatement(sql);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            //Mostrando a lista
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String nomeUsuario = rs.getString("nomeUsuario");
+                String cep = rs.getString("cep");
+                String email = rs.getString("email");
+                String senha = rs.getString("senha");
+                
+                String aux = String.format("Id: %d, Nome: %s, Cep %s,  Email %s,  Senha %s", id, nomeUsuario, cep, email, senha);
+                
+                JOptionPane.showMessageDialog(null, aux);
+            }
             //Executar o comando
             ps.execute();
   

@@ -52,8 +52,16 @@ public class TesteApp {
                     break;
                 }
                 case 3 -> {
+                    id = Integer.parseInt(JOptionPane.showInputDialog("id: "));
+                    
+                    usu.setId(id);
+                    
+                    usu.deletar();
+                    break;
                 }
                 case 4 -> {
+                    usu.listar();
+                    break;
                 }
                 case 0 -> {
                 }
