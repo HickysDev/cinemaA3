@@ -12,10 +12,11 @@ public class TesteApp {
             switch (op){
                 case 1:
                     String nomeUsuario = JOptionPane.showInputDialog("nome: ");
-                    Integer cep = Integer.parseInt(JOptionPane.showInputDialog("cep: "));
+                    String senha = JOptionPane.showInputDialog("senha: ");
+                    String cep = JOptionPane.showInputDialog("cep: ");
                     String email = JOptionPane.showInputDialog("email: ");
                     
-                    Usuario usu = new Usuario(nomeUsuario, cep, email);
+                    Usuario usu = new Usuario(nomeUsuario, cep, email, senha);
                     usu.setNomeUsuario(nomeUsuario);
                     usu.setCep(cep);
                     usu.setEmail(email);
