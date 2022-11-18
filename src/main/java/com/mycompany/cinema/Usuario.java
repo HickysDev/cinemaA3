@@ -11,11 +11,13 @@ public class Usuario {
     private String cep;
     private String email;
     private String senha;
+    private String administrador;
     private Integer id;
     
     
     // Construtor
-    public Usuario(String nomeUsuario, String cep, String email, String senha, Integer id) {
+    public Usuario(String nomeUsuario, String cep, String email, String senha, String administrador , Integer id) {
+        this.administrador = administrador;
         this.nomeUsuario = nomeUsuario;
         this.cep = cep;
         this.email = email;
@@ -25,8 +27,15 @@ public class Usuario {
 
 
     //getters e setters
-    
-    
+
+    public String isAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(String administrador) {
+        this.administrador = administrador;
+    }
+        
     public Integer getId() {
         return id;
     }

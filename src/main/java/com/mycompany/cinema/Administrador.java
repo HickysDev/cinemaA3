@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 
 public class Administrador extends Usuario{
     
-    public Administrador(String nomeUsuario, String cep, String email, String senha, Integer id){
-        super(nomeUsuario, cep, email, senha, id);
+    public Administrador(String nomeUsuario, String cep, String email, String senha, String administrador, Integer id){
+        super(nomeUsuario, cep, email, senha, administrador, id);
     }
     
     Filme f = new Filme(null);
