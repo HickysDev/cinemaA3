@@ -14,6 +14,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         perfilButton = new javax.swing.JButton();
         adicionarButton = new javax.swing.JButton();
+        cinemasButton = new javax.swing.JButton();
+        filmesCartazButton = new javax.swing.JButton();
+        todosFilmesButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -24,10 +27,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        adicionarButton.setText("Adicionar");
+        adicionarButton.setText("Adicionar Filme");
         adicionarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adicionarButtonActionPerformed(evt);
+            }
+        });
+
+        cinemasButton.setText("Cinemas");
+        cinemasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cinemasButtonActionPerformed(evt);
+            }
+        });
+
+        filmesCartazButton.setText("Filmes em cartaz");
+
+        todosFilmesButton.setText("Todos os Filmes");
+        todosFilmesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                todosFilmesButtonActionPerformed(evt);
             }
         });
 
@@ -36,20 +55,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(perfilButton)
-                .addGap(31, 31, 31)
-                .addComponent(adicionarButton)
-                .addContainerGap(546, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(adicionarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(perfilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cinemasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filmesCartazButton)
+                    .addComponent(todosFilmesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(646, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(perfilButton)
-                    .addComponent(adicionarButton))
-                .addContainerGap(428, Short.MAX_VALUE))
+                .addGap(82, 82, 82)
+                .addComponent(todosFilmesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(filmesCartazButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(cinemasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(perfilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(adicionarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         pack();
@@ -74,6 +102,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void adicionarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_adicionarButtonActionPerformed
+
+    private void cinemasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinemasButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cinemasButtonActionPerformed
+
+    private void todosFilmesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosFilmesButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_todosFilmesButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,6 +150,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarButton;
+    private javax.swing.JButton cinemasButton;
+    private javax.swing.JButton filmesCartazButton;
     private javax.swing.JButton perfilButton;
+    private javax.swing.JButton todosFilmesButton;
     // End of variables declaration//GEN-END:variables
 }
