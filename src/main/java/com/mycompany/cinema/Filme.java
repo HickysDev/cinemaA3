@@ -2,9 +2,14 @@ package com.mycompany.cinema;
 
 public class Filme {
     private String nomeFilme;
+    private Boolean cartaz;
 
-    public Filme(String nomeFilme) {
-        this.nomeFilme = nomeFilme;
+    public Boolean getCartaz() {
+        return cartaz;
+    }
+
+    public void setCartaz(Boolean cartaz) {
+        this.cartaz = cartaz;
     }
 
     public String getNomeFilme() {
