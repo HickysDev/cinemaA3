@@ -98,7 +98,7 @@ public class LoginTela extends javax.swing.JFrame {
             email = loginTextField.getText();
             senha = new String(senhaPasswordField.getPassword());
 
-            Usuario usuarioLogin = new Usuario(null, null, email, senha, null, null);
+            Usuario usuarioLogin = new Usuario();
             usuarioLogin.setEmail(email);
             usuarioLogin.setSenha(senha);
 

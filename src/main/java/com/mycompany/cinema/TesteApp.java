@@ -16,7 +16,7 @@ public class TesteApp {
         Integer id = null;
         String senha = null;
         
-        Usuario usu = new Usuario(nomeUsuario, cep, email, senha, administrador, id);
+        Usuario usu = new Usuario();
         
         do{
             op = Integer.parseInt(JOptionPane.showInputDialog(menu));

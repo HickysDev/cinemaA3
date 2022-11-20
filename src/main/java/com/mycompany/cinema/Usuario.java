@@ -14,18 +14,6 @@ public class Usuario {
     private String administrador;
     private Integer id;
     
-    
-    // Construtor
-    public Usuario(String nomeUsuario, String cep, String email, String senha, String administrador , Integer id) {
-        this.administrador = administrador;
-        this.nomeUsuario = nomeUsuario;
-        this.cep = cep;
-        this.email = email;
-        this.senha = senha;
-        this.id = id;
-    }
-
-
     //getters e setters
 
     public String isAdministrador() {
