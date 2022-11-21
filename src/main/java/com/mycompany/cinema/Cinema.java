@@ -1,17 +1,20 @@
 package com.mycompany.cinema;
 
 public class Cinema {
+   private Integer idCine;
    private String nomeCinema;
-   private String localizacao;
+   private Integer localizacao;
    private String filmesCartaz;
+    
    
-    public Cinema (String nomeCinema, String localizacao, String filmesCartaz){
-       this.nomeCinema = nomeCinema;
-       this.localizacao = localizacao;
-       this.filmesCartaz = filmesCartaz;        
-   
-   }
-   
+    public Integer getIdCine() {
+        return idCine;
+    }
+
+    public void setIdCine(Integer idCine) {
+        this.idCine = idCine;
+    }
+    
     public String getNomeCinema() {
         return nomeCinema;
     }
@@ -20,11 +23,11 @@ public class Cinema {
         this.nomeCinema = nomeCinema;
     }
 
-    public String getLocalizacao() {
+    public Integer getLocalizacao() {
         return localizacao;
     }
 
-    public void setLocalizacao(String localizacao) {
+    public void setLocalizacao(Integer localizacao) {
         this.localizacao = localizacao;
     }
 

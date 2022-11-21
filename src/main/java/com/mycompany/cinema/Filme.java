@@ -2,13 +2,22 @@ package com.mycompany.cinema;
 
 public class Filme {
     private String nomeFilme;
-    private Boolean cartaz;
+    private Integer cartaz;
+    private Integer id;
 
-    public Boolean getCartaz() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCartaz() {
         return cartaz;
     }
 
-    public void setCartaz(Boolean cartaz) {
+    public void setCartaz(Integer cartaz) {
         this.cartaz = cartaz;
     }
 
