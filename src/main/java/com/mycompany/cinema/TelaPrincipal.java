@@ -1,9 +1,13 @@
 
 package com.mycompany.cinema;
 
+import javax.swing.JOptionPane;
+
 
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    
+    public String emailCache;
+    
     public TelaPrincipal() {
         initComponents();
     }
@@ -122,7 +126,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed
-
+        DAO dao = new DAO();
+        Usuario usuario = new Usuario();
+        usuario.setEmail(emailCache);
+        
+        dao.armazenarDados(usuario);
+        
+        JOptionPane.showMessageDialog(null,usuario.getNomeUsuario());
         
     }//GEN-LAST:event_perfilButtonActionPerformed
 
@@ -138,7 +148,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cinemasButtonActionPerformed
 
     private void todosFilmesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosFilmesButtonActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_todosFilmesButtonActionPerformed
 
     private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
@@ -195,6 +205,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton adicionarButton;
     private javax.swing.JButton cinemasButton;
     private javax.swing.JButton filmesCartazButton;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton perfilButton;
     private javax.swing.JButton sairButton;
     private javax.swing.JButton todosFilmesButton;

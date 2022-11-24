@@ -92,32 +92,29 @@ public class LoginTela extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         try {
-
             String email, senha;
 
             email = loginTextField.getText();
             senha = new String(senhaPasswordField.getPassword());
 
             Usuario usuarioLogin = new Usuario();
+            TelaPrincipal telaprincipal = new TelaPrincipal();
             usuarioLogin.setEmail(email);
             usuarioLogin.setSenha(senha);
 
             DAO autenticacao = new DAO();
             ResultSet rsUsuarioValido = autenticacao.autenticacaoUsuario(usuarioLogin);
-            
-            if (rsUsuarioValido.next()) {
 
-                TelaPrincipal telaprincipal = new TelaPrincipal();
+            if (rsUsuarioValido.next()) {
+                autenticacao.armazenarDados(usuarioLogin);
+                telaprincipal.emailCache = usuarioLogin.getEmail();
                 telaprincipal.exibirBotao(autenticacao.verificacaoAdmin(usuarioLogin));
                 telaprincipal.setVisible(true);
-                
-                System.out.println("tela de login: "+autenticacao.verificacaoAdmin(usuarioLogin));
-                
+
                 dispose();
             } else {
-
                 JOptionPane.showMessageDialog(null, "Usuário e Senha inválidos");
-                
+
             }
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "LoginTela: " + erro);

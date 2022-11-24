@@ -6,8 +6,12 @@ import javax.swing.JOptionPane;
 
 public class DAO {
 
+    public String emailCache, nomeUsuarioCache, cepCache, administradorCache;
+
     Connection conn;
+
     PreparedStatement pstm;
+
     public ResultSet autenticacaoUsuario(Usuario usuario) {
         conn = new ConnectionFactory().obtemConexao();
 
@@ -76,7 +80,7 @@ public class DAO {
         }
 
     }
-    
+
     public void cadastrarCinema(Cinema cine) {
         String sql = "INSERT INTO tb_cinema (nomeCinema, localizacao) VALUES (?,?)";
 
@@ -101,30 +105,30 @@ public class DAO {
     ArrayList<Cinema> listaCine = new ArrayList<>();
 
     public ArrayList<Filme> TableFilme() {
-        
+
         String sql = "SELECT id,nomeFilme,cartaz FROM tb_filme";
         conn = new ConnectionFactory().obtemConexao();
         try {
             pstm = conn.prepareStatement(sql);
 
             rs = pstm.executeQuery();
-            
-            while(rs.next()){
-            Filme filme = new Filme();
-            filme.setId(rs.getInt("id"));
-            filme.setNomeFilme(rs.getString("nomeFilme"));
-            filme.setCartaz(rs.getInt("cartaz"));
-            
-            listaFilme.add(filme);
+
+            while (rs.next()) {
+                Filme filme = new Filme();
+                filme.setId(rs.getInt("id"));
+                filme.setNomeFilme(rs.getString("nomeFilme"));
+                filme.setCartaz(rs.getInt("cartaz"));
+
+                listaFilme.add(filme);
             }
-            
+
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "deu ruim no tablefilme" + erro);
         }
         return listaFilme;
     }
-    
-        public void vincularCinema(VincularCinema vincCine) {
+
+    public void vincularCinema(VincularCinema vincCine) {
         String sql = "INSERT INTO filme_existe_cinema (idFilme, idCinema) VALUES (?,?)";
 
         conn = new ConnectionFactory().obtemConexao();
@@ -143,28 +147,53 @@ public class DAO {
         }
 
     }
-    
-        public ArrayList<Cinema> TableCinema() {
-        
+
+    public ArrayList<Cinema> TableCinema() {
+
         String sql = "SELECT id,nomeCinema,localizacao FROM tb_cinema";
         conn = new ConnectionFactory().obtemConexao();
         try {
             pstm = conn.prepareStatement(sql);
 
             rs = pstm.executeQuery();
-            
-            while(rs.next()){
-            Cinema cine = new Cinema();
-            cine.setIdCine(rs.getInt("id"));
-            cine.setNomeCinema(rs.getString("nomeCinema"));
-            cine.setLocalizacao(rs.getInt("localizacao"));
-            
-            listaCine.add(cine);
+
+            while (rs.next()) {
+                Cinema cine = new Cinema();
+                cine.setIdCine(rs.getInt("id"));
+                cine.setNomeCinema(rs.getString("nomeCinema"));
+                cine.setLocalizacao(rs.getInt("localizacao"));
+
+                listaCine.add(cine);
             }
-            
+
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "deu ruim no TableCinema" + erro);
         }
         return listaCine;
+    }
+
+    public void armazenarDados(Usuario usuario) {
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+            String sql = "Select cep,nomeUsuario,email,administrador from tb_usuario where email = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, usuario.getEmail());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                usuario.setCep(rs.getString("cep"));
+                usuario.setNomeUsuario(rs.getString("nomeUsuario"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setAdministrador(rs.getString("administrador"));
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "DAO :" + erro);
+
+        }
+
     }
 }

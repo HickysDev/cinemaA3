@@ -18,57 +18,62 @@ public class TesteApp {
         
         Usuario usu = new Usuario();
         
-        do{
-            op = Integer.parseInt(JOptionPane.showInputDialog(menu));
-            switch (op){
-                case 1 -> {
-                    nomeUsuario = JOptionPane.showInputDialog("nome: ");
-                    cep = JOptionPane.showInputDialog("cep: ");
-                    email = JOptionPane.showInputDialog("email: ");
-                    senha = JOptionPane.showInputDialog("senha: ");
-                    
-                    
-                    
-                    usu.setNomeUsuario(nomeUsuario);
-                    usu.setCep(cep);
-                    usu.setEmail(email);
-                    usu.setSenha(senha);
-                    
-                    usu.inserir();
-                    break;
-                }
-                case 2 -> {
-                    id = Integer.parseInt(JOptionPane.showInputDialog("id: "));
-                    nomeUsuario = JOptionPane.showInputDialog("nome: ");
-                    cep = JOptionPane.showInputDialog("cep: ");
-                    email = JOptionPane.showInputDialog("email: ");
-                    
-                    
-                    usu.setNomeUsuario(nomeUsuario);
-                    usu.setCep(cep);
-                    usu.setEmail(email);
-                    usu.setId(id);
-                    
-                    usu.atualizar();
-                    break;
-                }
-                case 3 -> {
-                    id = Integer.parseInt(JOptionPane.showInputDialog("id: "));
-                    
-                    usu.setId(id);
-                    
-                    usu.deletar();
-                    break;
-                }
-                case 4 -> {
-                    usu.listar();
-                    break;
-                }
-                case 0 -> {
-                }
-                default -> JOptionPane.showMessageDialog(null, "Opção inválida");
-            }
-        }while (op != 0);
+        LoginTela inicio = new LoginTela();
+        
+        inicio.setVisible(true);
+        
+        
+//        do{
+//            op = Integer.parseInt(JOptionPane.showInputDialog(menu));
+//            switch (op){
+//                case 1 -> {
+//                    nomeUsuario = JOptionPane.showInputDialog("nome: ");
+//                    cep = JOptionPane.showInputDialog("cep: ");
+//                    email = JOptionPane.showInputDialog("email: ");
+//                    senha = JOptionPane.showInputDialog("senha: ");
+//                    
+//                    
+//                    
+//                    usu.setNomeUsuario(nomeUsuario);
+//                    usu.setCep(cep);
+//                    usu.setEmail(email);
+//                    usu.setSenha(senha);
+//                    
+//                    usu.inserir();
+//                    break;
+//                }
+//                case 2 -> {
+//                    id = Integer.parseInt(JOptionPane.showInputDialog("id: "));
+//                    nomeUsuario = JOptionPane.showInputDialog("nome: ");
+//                    cep = JOptionPane.showInputDialog("cep: ");
+//                    email = JOptionPane.showInputDialog("email: ");
+//                    
+//                    
+//                    usu.setNomeUsuario(nomeUsuario);
+//                    usu.setCep(cep);
+//                    usu.setEmail(email);
+//                    usu.setId(id);
+//                    
+//                    usu.atualizar();
+//                    break;
+//                }
+//                case 3 -> {
+//                    id = Integer.parseInt(JOptionPane.showInputDialog("id: "));
+//                    
+//                    usu.setId(id);
+//                    
+//                    usu.deletar();
+//                    break;
+//                }
+//                case 4 -> {
+//                    usu.listar();
+//                    break;
+//                }
+//                case 0 -> {
+//                }
+//                default -> JOptionPane.showMessageDialog(null, "Opção inválida");
+//            }
+//        }while (op != 0);
     }
     }
 
