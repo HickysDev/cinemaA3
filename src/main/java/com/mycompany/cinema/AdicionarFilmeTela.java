@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -46,6 +48,8 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         emCartazTextField = new javax.swing.JTextField();
+        sinopseTextField = new javax.swing.JTextField();
+        dataLancamentoTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +105,10 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
 
         emCartazTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Em cartaz:"));
 
+        sinopseTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Sinopse:"));
+
+        dataLancamentoTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Data de Lançamento:"));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,28 +116,32 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(idFilmeTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nomeFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(idCinemaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(79, 79, 79))
+                                .addGap(28, 28, 28)
+                                .addComponent(idFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(102, 102, 102)
-                                .addComponent(emCartazTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(19, 19, 19)
+                                .addComponent(nomeFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idCinemaTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emCartazTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(79, 79, 79))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(107, 107, 107)
                                 .addComponent(designarCinemaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(102, 102, 102)
-                                .addComponent(cadastrarFilmeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(160, 160, 160)))
+                                .addGap(74, 74, 74)
+                                .addComponent(cadastrarFilmeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(sinopseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(dataLancamentoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,22 +160,27 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel2)
-                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nomeFilmeTextField)
-                            .addComponent(emCartazTextField))
+                        .addComponent(jLabel2)
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nomeFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emCartazTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sinopseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dataLancamentoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
                         .addComponent(cadastrarFilmeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(108, 108, 108)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(idFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(idCinemaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(69, 69, 69)
-                        .addComponent(designarCinemaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(designarCinemaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -176,35 +193,41 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
 
     private void designarCinemaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_designarCinemaButtonActionPerformed
         // TODO add your handling code here:
-        
-    Integer idFilme;
-    Integer idCine;
-    
-    idFilme =  Integer.parseInt(idFilmeTextField.getText());
-    idCine = Integer.parseInt(idCinemaTextField.getText());
-    
-    VincularCinema vincCine = new VincularCinema();
-    vincCine.setIdVincFilme(idFilme);
-    vincCine.setIdVincCine(idCine);
-    
-    DAO dao = new DAO();
-    dao.vincularCinema(vincCine);
 
-    
+        Integer idFilme;
+        Integer idCine;
+
+        idFilme = Integer.parseInt(idFilmeTextField.getText());
+        idCine = Integer.parseInt(idCinemaTextField.getText());
+
+        VincularCinema vincCine = new VincularCinema();
+        vincCine.setIdVincFilme(idFilme);
+        vincCine.setIdVincCine(idCine);
+
+        DAO dao = new DAO();
+        dao.vincularCinema(vincCine);
+
+
     }//GEN-LAST:event_designarCinemaButtonActionPerformed
 
     private void cadastrarFilmeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarFilmeButtonActionPerformed
         // TODO add your handling code here:       
         String nomeFilme;
         Integer emCartaz;
+        String sinopse;
+        String dataLancamento;
 
         nomeFilme = nomeFilmeTextField.getText();
         emCartaz = Integer.parseInt(emCartazTextField.getText());
+        sinopse = sinopseTextField.getText();
+        dataLancamento = dataLancamentoTextField.getText();
 
         if (emCartaz <= 1) {
             Filme filme = new Filme();
             filme.setNomeFilme(nomeFilme);
             filme.setCartaz(emCartaz);
+            filme.setSinopse(sinopse);
+            filme.setDataLancamento(dataLancamento);
 
             Administrador adm = new Administrador();
             adm.cadastrarFilme(filme);
@@ -255,6 +278,7 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastrarFilmeButton;
     private javax.swing.JTable cinemaTable;
+    private javax.swing.JTextField dataLancamentoTextField;
     private javax.swing.JButton designarCinemaButton;
     private javax.swing.JTextField emCartazTextField;
     private javax.swing.JTable filmeTable;
@@ -265,6 +289,7 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nomeFilmeTextField;
+    private javax.swing.JTextField sinopseTextField;
     // End of variables declaration//GEN-END:variables
 
     private void listarFilmesTabela() {
@@ -274,7 +299,15 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
             model.setNumRows(0);
 
             ArrayList<Filme> listaFilme = dao.TableFilme();
-
+           
+            filmeTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+                
+                public void valueChanged(ListSelectionEvent event){
+                
+                    System.out.println(filmeTable.getValueAt(filmeTable.getSelectedRow(),0).toString());
+                }
+                
+            });
             for (int num = 0; num < listaFilme.size(); num++) {
                 model.addRow(new Object[]{
                     listaFilme.get(num).getId(),
@@ -287,11 +320,10 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "erro no listarFilmesTabela" + erro);
         }
-        
-        
 
     }
-        private void listarCinemasTabela() {
+
+    private void listarCinemasTabela() {
         try {
             DAO dao = new DAO();
             DefaultTableModel model = (DefaultTableModel) cinemaTable.getModel();
@@ -311,12 +343,6 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "erro no listarCinemasTabela" + erro);
         }
-        
-        
 
     }
-        }
-
-
-    
-    
+}

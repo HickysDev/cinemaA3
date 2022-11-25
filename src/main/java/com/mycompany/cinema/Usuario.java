@@ -16,7 +16,7 @@ public class Usuario {
     
     //getters e setters
 
-    public String isAdministrador() {
+    public String getAdministrador() {
         return administrador;
     }
 

@@ -2,7 +2,10 @@ package com.mycompany.cinema;
 
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class DAO {
 
@@ -63,7 +66,7 @@ public class DAO {
     }
 
     public void cadastrarFilme(Filme filme) {
-        String sql = "INSERT INTO tb_filme (nomeFilme,cartaz) VALUES (?,?)";
+        String sql = "INSERT INTO tb_filme (nomeFilme,cartaz,sinopse,dataLancamento) VALUES (?,?,?,?)";
 
         conn = new ConnectionFactory().obtemConexao();
 
@@ -72,6 +75,8 @@ public class DAO {
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, filme.getNomeFilme());
             pstm.setInt(2, filme.getCartaz());
+            pstm.setString(3, filme.getSinopse());
+            pstm.setString(4, filme.getDataLancamento());
 
             pstm.execute();
             pstm.close();
@@ -106,7 +111,7 @@ public class DAO {
 
     public ArrayList<Filme> TableFilme() {
 
-        String sql = "SELECT id,nomeFilme,cartaz FROM tb_filme";
+        String sql = "SELECT id,nomeFilme,cartaz,sinopse,dataLancamento FROM tb_filme";
         conn = new ConnectionFactory().obtemConexao();
         try {
             pstm = conn.prepareStatement(sql);
@@ -196,4 +201,90 @@ public class DAO {
         }
 
     }
+
+    public void CadastrarUsuario(Usuario usuario) {
+        String sql = "INSERT INTO tb_usuario (nomeUsuario,cep,email,senha,administrador) VALUES (?,?,?,?,?)";
+
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, usuario.getNomeUsuario());
+            pstm.setString(2, usuario.getCep());
+            pstm.setString(3, usuario.getEmail());
+            pstm.setString(4, usuario.getSenha());
+            pstm.setString(5, usuario.getAdministrador());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no cadastrarUsuario" + erro);
+        }
+
+    }
+
+    public boolean verificacaoEmail(Usuario usuario) {
+        conn = new ConnectionFactory().obtemConexao();
+        String emailUsado = "";
+        try {
+            String sql = "Select email from tb_usuario where email = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, usuario.getEmail());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                emailUsado = rs.getString("email");
+
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "DAO :" + erro);
+
+        }
+        System.out.println("DAO: " + emailUsado);
+
+        if (emailUsado.equals(usuario.getEmail())) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public void loading() {
+        conn = new ConnectionFactory().obtemConexao();
+        JTable tbl = new JTable();
+        
+        try {
+            String[] title = {"First Name", "Last Name", "Picture"};
+            String sql = "select * from tb_filme";
+            
+            DefaultTableModel model = new DefaultTableModel(null, title) {
+                @Override
+                public Class<?> getColumnClass(int column) {
+                    if (column == 2) {
+                        return ImageIcon.class;
+                    }
+                    return Object.class;
+                }
+            };
+        
+            pstm = conn.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery(sql);
+            Object[] fila = new Object[4];
+            while (rs.next()) {
+                fila[0] = rs.getString("nomeFilme");
+                fila[1] = rs.getString("sinopse");
+                fila[2] = rs.getString("cartaz");
+                model.addRow(fila);
+            }
+            tbl.setModel(model);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
 }
