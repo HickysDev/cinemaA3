@@ -107,6 +107,7 @@ public class DAO {
     }
     ResultSet rs;
     ArrayList<Filme> listaFilme = new ArrayList<>();
+    ArrayList<Filme> listaFilmeCartaz = new ArrayList<>();
     ArrayList<Cinema> listaCine = new ArrayList<>();
 
     public ArrayList<Filme> TableFilme() {
@@ -131,6 +132,30 @@ public class DAO {
             JOptionPane.showMessageDialog(null, "deu ruim no tablefilme" + erro);
         }
         return listaFilme;
+    }
+    
+    public ArrayList<Filme> TableFilmeCartaz() {
+
+        String sql = "SELECT id,nomeFilme,cartaz,sinopse,dataLancamento FROM tb_filme Where cartaz = 1";
+        conn = new ConnectionFactory().obtemConexao();
+        try {
+            pstm = conn.prepareStatement(sql);
+
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                Filme filme = new Filme();
+                filme.setId(rs.getInt("id"));
+                filme.setNomeFilme(rs.getString("nomeFilme"));
+                filme.setCartaz(rs.getInt("cartaz"));
+
+                listaFilmeCartaz.add(filme);
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no tablefilme" + erro);
+        }
+        return listaFilmeCartaz;
     }
 
     public void vincularCinema(VincularCinema vincCine) {

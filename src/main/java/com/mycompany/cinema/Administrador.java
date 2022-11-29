@@ -13,7 +13,7 @@ public class Administrador extends Usuario{
    
     
     public void adiconarCinema(Cinema cine){
-    dao.cadastrarCinema(cine);
+        dao.cadastrarCinema(cine);
     }
     
     public void excluirCinema(){

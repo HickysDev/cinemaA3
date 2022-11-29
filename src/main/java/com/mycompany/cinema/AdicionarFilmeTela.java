@@ -4,9 +4,13 @@
  */
 package com.mycompany.cinema;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -299,15 +303,7 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
             model.setNumRows(0);
 
             ArrayList<Filme> listaFilme = dao.TableFilme();
-           
-            filmeTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-                
-                public void valueChanged(ListSelectionEvent event){
-                
-                    System.out.println(filmeTable.getValueAt(filmeTable.getSelectedRow(),0).toString());
-                }
-                
-            });
+            
             for (int num = 0; num < listaFilme.size(); num++) {
                 model.addRow(new Object[]{
                     listaFilme.get(num).getId(),
@@ -322,8 +318,36 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         }
 
     }
-
+    
+    private static MouseListener getMouseListener() {
+        return new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                System.out.println(((JComponent) e.getSource()).getName());
+            }
+        };
+    }
+    
     private void listarCinemasTabela() {
+        
+        
+        cinemaTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            
+            System.out.println(cinemaTable.getValueAt(cinemaTable.getSelectedRow(), 0).toString());
+            
+            String id = cinemaTable.getValueAt(cinemaTable.getSelectedRow(), 0).toString();
+                        
+            if(id.equals("1")){
+                TelaPrincipal tela = new TelaPrincipal();
+                
+                tela.setVisible(true);
+                
+                dispose();
+
+            }
+            
+        });
+        
+        
         try {
             DAO dao = new DAO();
             DefaultTableModel model = (DefaultTableModel) cinemaTable.getModel();
@@ -332,6 +356,7 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
             ArrayList<Cinema> listaCine = dao.TableCinema();
 
             for (int num = 0; num < listaCine.size(); num++) {
+                
                 model.addRow(new Object[]{
                     listaCine.get(num).getIdCine(),
                     listaCine.get(num).getNomeCinema(),
