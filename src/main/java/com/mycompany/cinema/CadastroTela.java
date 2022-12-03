@@ -63,8 +63,6 @@ public class CadastroTela extends javax.swing.JFrame {
             }
         });
 
-        senhaTextField.setText("jPasswordField1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,7 +119,9 @@ public class CadastroTela extends javax.swing.JFrame {
 
     private void registrarJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarJButtonActionPerformed
         // TODO add your handling code here:
-         try {
+        Usuario usuarioLogin = new Usuario();
+        TelaPrincipal telaprincipal = new TelaPrincipal();
+        try {
             String email, senha, cep, nomeUsuario;
 
             email = emailTextField.getText();
@@ -130,33 +130,32 @@ public class CadastroTela extends javax.swing.JFrame {
             nomeUsuario = nomeUsuarioTextField.getText();
             String adm = "0";
 
-            Usuario usuarioLogin = new Usuario();
-            TelaPrincipal telaprincipal = new TelaPrincipal();
+            // atribui os 
             usuarioLogin.setEmail(email);
             usuarioLogin.setSenha(senha);
             usuarioLogin.setCep(cep);
             usuarioLogin.setNomeUsuario(nomeUsuario);
             usuarioLogin.setAdministrador(adm);
-            
 
             DAO autenticacao = new DAO();
-            ResultSet rsUsuarioValido = autenticacao.autenticacaoUsuario(usuarioLogin);
 
-            if (rsUsuarioValido.next()) {
+            ResultSet rsUsuarioValidoCad = autenticacao.autenticacaoCadastro(usuarioLogin);
+            if (rsUsuarioValidoCad.next()) {
+                JOptionPane.showMessageDialog(null, "Email já existente");
+            } else {
+                autenticacao.CadastrarUsuario(usuarioLogin);
                 autenticacao.armazenarDados(usuarioLogin);
                 telaprincipal.emailCache = usuarioLogin.getEmail();
                 telaprincipal.exibirBotao(autenticacao.verificacaoAdmin(usuarioLogin));
                 telaprincipal.setVisible(true);
-
                 dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuário e Senha inválidos");
 
             }
-        } catch (SQLException erro) {
+
+        } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "LoginTela: " + erro);
-        }
-        
+        };
+
     }//GEN-LAST:event_registrarJButtonActionPerformed
 
     /**

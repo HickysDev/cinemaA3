@@ -15,6 +15,25 @@ public class DAO {
 
     PreparedStatement pstm;
 
+    public ResultSet autenticacaoCadastro(Usuario usuario) {
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+            String sql = "Select * from tb_usuario where email = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, usuario.getEmail());
+
+            ResultSet rs = ps.executeQuery();
+            return rs;
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "DAO :" + erro);
+            return null;
+        }
+
+    }
+
     public ResultSet autenticacaoUsuario(Usuario usuario) {
         conn = new ConnectionFactory().obtemConexao();
 
@@ -33,6 +52,31 @@ public class DAO {
             return null;
         }
 
+    }
+
+    public ResultSet cadastrarUsuario(Usuario usuario) {
+        //Definir comando SQL
+        String sql = "INSERT INTO tb_usuario(nomeUsuario, cep, email, senha) VALUES (?,?,?,?,?)";
+
+        //Abrir conexao com o db
+        ConnectionFactory factory = new ConnectionFactory();
+        try ( Connection c = factory.obtemConexao()) {
+            // Compila o comando
+            PreparedStatement ps = c.prepareStatement(sql);
+
+            String adm = "0";
+            // Preenche os dados
+            ps.setString(1, usuario.getNomeUsuario());
+            ps.setString(2, usuario.getEmail());
+            ps.setString(3, usuario.getCep());
+            ps.setString(4, usuario.getSenha());
+            ps.setString(5, adm);
+            //Executar o comando
+            ps.execute();
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "DAO :" + erro);
+        }
+        return null;
     }
 
     public boolean verificacaoAdmin(Usuario usuario) {
@@ -133,7 +177,7 @@ public class DAO {
         }
         return listaFilme;
     }
-    
+
     public ArrayList<Filme> TableFilmeCartaz() {
 
         String sql = "SELECT id,nomeFilme,cartaz,sinopse,dataLancamento FROM tb_filme Where cartaz = 1";
@@ -282,11 +326,11 @@ public class DAO {
     public void loading() {
         conn = new ConnectionFactory().obtemConexao();
         JTable tbl = new JTable();
-        
+
         try {
             String[] title = {"First Name", "Last Name", "Picture"};
             String sql = "select * from tb_filme";
-            
+
             DefaultTableModel model = new DefaultTableModel(null, title) {
                 @Override
                 public Class<?> getColumnClass(int column) {
@@ -296,7 +340,7 @@ public class DAO {
                     return Object.class;
                 }
             };
-        
+
             pstm = conn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery(sql);
             Object[] fila = new Object[4];
@@ -312,4 +356,120 @@ public class DAO {
         }
     }
 
+    public void alterarFilme(Filme filme) {
+        String sql = "UPDATE tb_filme SET nomeFilme = ?,cartaz = ? ,sinopse = ? ,dataLancamento = ?  WHERE id = ?";
+
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, filme.getNomeFilme());
+            pstm.setInt(2, filme.getCartaz());
+            pstm.setString(3, filme.getSinopse());
+            pstm.setString(4, filme.getDataLancamento());
+            pstm.setInt(5, filme.getId());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no alterar" + erro);
+        }
+
+    }
+    
+     public void excluirFilmeExiste(Filme filme) {
+        String sql = "DELETE FROM filme_existe_cinema WHERE idFilme= ?";
+
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, filme.getId());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no excluir FilmeExiste " + erro);
+        }
+
+    }
+
+     public void excluirFilme(Filme filme) {
+        String sql = "DELETE FROM tb_filme WHERE id= ?";
+
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, filme.getId());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no excluir" + erro);
+        }
+
+    }
+     
+      public void alterarCinema(Cinema cine) {
+        String sql = "UPDATE tb_cinema SET nomeCinema = ? ,localizacao = ?  WHERE id = ?";
+
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, cine.getNomeCinema());
+            pstm.setInt(2, cine.getLocalizacao());
+            pstm.setInt(3, cine.getIdCine());
+
+            pstm.execute();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Cinema alterado!");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no alterarCine" + erro);
+        }
+
+
+    }
+    
+     public void excluirCinemaExiste(Cinema cine) {
+        String sql = "DELETE FROM filme_existe_cinema WHERE idCinema= ?";
+
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, cine.getIdCine());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no excluir Cine Existe" + erro);
+        }
+
+
+    }
+
+     public void excluirCinema(Cinema cine) {
+        String sql = "DELETE FROM tb_cinema WHERE id= ?";
+
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, cine.getIdCine());
+
+            pstm.execute();
+            pstm.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no excluir Cine" + erro);
+        }
+
+    }
 }

@@ -111,6 +111,8 @@ public class LoginTela extends javax.swing.JFrame {
             email = loginTextField.getText();
             senha = new String(senhaPasswordField.getPassword());
 
+            
+            PerfilTela perfiltela = new PerfilTela();
             Usuario usuarioLogin = new Usuario();
             TelaPrincipal telaprincipal = new TelaPrincipal();
             usuarioLogin.setEmail(email);

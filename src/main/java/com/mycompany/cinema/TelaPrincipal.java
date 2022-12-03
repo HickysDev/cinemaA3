@@ -15,10 +15,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-    
+
     public String emailCache;
     private boolean listaCarregada = false;
-    
+
     public TelaPrincipal() {
         initComponents();
 
@@ -212,7 +212,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         dao.armazenarDados(usuario);
 
-        JOptionPane.showMessageDialog(null, usuario.getNomeUsuario());
+        System.out.println(usuario.getCep());
+        PerfilTela add = new PerfilTela();
+        add.setVisible(true);
+        dispose();
+
 
     }//GEN-LAST:event_perfilButtonActionPerformed
 
@@ -295,7 +299,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             int id = Integer.parseInt(principalTable.getValueAt(principalTable.getSelectedRow(), 0).toString());
 
             Filme filme = new Filme();
-            
+
             filme.setId(id);
 
         });
