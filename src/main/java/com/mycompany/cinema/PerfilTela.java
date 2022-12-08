@@ -11,17 +11,15 @@ import javax.swing.JOptionPane;
  * @author Hickys
  */
 public class PerfilTela extends javax.swing.JFrame {
-   
-    TelaPrincipal armazenar = new TelaPrincipal();
-    String emailCache = armazenar.emailCache;
-    Usuario usuario = new Usuario();
+
+    String emailCache;
+
     /**
      * Creates new form PerfilTela
      */
     public PerfilTela() {
         initComponents();
-        Mostrar();
-        System.out.println(usuario.getEmail());
+
     }
 
     public void Mostrar() {
@@ -41,25 +39,28 @@ public class PerfilTela extends javax.swing.JFrame {
     private void initComponents() {
 
         nomeUsuarioLabel = new javax.swing.JLabel();
-        cepLabel = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
-        mostrarCep = new javax.swing.JButton();
+        editarButton = new javax.swing.JButton();
+        cepLabel = new javax.swing.JLabel();
+        idLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         nomeUsuarioLabel.setToolTipText("");
         nomeUsuarioLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
 
-        cepLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("CEP"));
-
         emailLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Email"));
 
-        mostrarCep.setText("jButton1");
-        mostrarCep.addActionListener(new java.awt.event.ActionListener() {
+        editarButton.setText("Editar");
+        editarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostrarCepActionPerformed(evt);
+                editarButtonActionPerformed(evt);
             }
         });
+
+        cepLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Cep:"));
+
+        idLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("ID:"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,47 +68,67 @@ public class PerfilTela extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(232, 232, 232))
+                .addComponent(editarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(237, 237, 237))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
-                        .addComponent(nomeUsuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
-                        .addComponent(cepLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomeUsuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(mostrarCep)))
-                .addContainerGap(123, Short.MAX_VALUE))
+                        .addGap(31, 31, 31)
+                        .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(75, 75, 75)
+                .addComponent(cepLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nomeUsuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cepLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(nomeUsuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cepLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(mostrarCep)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addGap(86, 86, 86)
+                .addComponent(editarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mostrarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarCepActionPerformed
+    private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonActionPerformed
         // TODO add your handling code here:
-        DAO dao = new DAO();
+        EditarPefilTela editar = new EditarPefilTela();
+        editar.emailCache = emailCache;
+
+        editar.exibirDadosEditar();
+        System.out.println("email cache tela perfil editar:" + editar.emailCache);
+
+        editar.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_editarButtonActionPerformed
+
+    public void exibirDados() {
         Usuario usuario = new Usuario();
+        DAO dao = new DAO();
         usuario.setEmail(emailCache);
-
+        System.out.println("id tela perfil :" + usuario.getId());
         dao.armazenarDados(usuario);
-
-        System.out.println(usuario.getNomeUsuario());
-    }//GEN-LAST:event_mostrarCepActionPerformed
+        cepLabel.setText(usuario.getCep());
+        nomeUsuarioLabel.setText(usuario.getNomeUsuario());
+        emailLabel.setText(usuario.getEmail());
+        idLabel.setText(String.valueOf(usuario.getId()));
+    }
 
     /**
      * @param args the command line arguments
@@ -147,8 +168,9 @@ public class PerfilTela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cepLabel;
+    private javax.swing.JButton editarButton;
     private javax.swing.JLabel emailLabel;
-    private javax.swing.JButton mostrarCep;
+    private javax.swing.JLabel idLabel;
     private javax.swing.JLabel nomeUsuarioLabel;
     // End of variables declaration//GEN-END:variables
 }

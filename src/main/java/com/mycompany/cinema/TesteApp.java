@@ -6,6 +6,7 @@ public class TesteApp {
 
     public static void main(String[] args) {
         String menu = "1-Cadastrar, 2-Atualizar, 3-Apagar, 4-Listar, 0-Sair";
+        System.out.println(x);
         int op;
         
         // variaveis

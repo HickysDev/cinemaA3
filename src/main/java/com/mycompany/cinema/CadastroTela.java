@@ -119,43 +119,8 @@ public class CadastroTela extends javax.swing.JFrame {
 
     private void registrarJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarJButtonActionPerformed
         // TODO add your handling code here:
-        Usuario usuarioLogin = new Usuario();
-        TelaPrincipal telaprincipal = new TelaPrincipal();
-        try {
-            String email, senha, cep, nomeUsuario;
 
-            email = emailTextField.getText();
-            senha = new String(senhaTextField.getPassword());
-            cep = cepTextField.getText();
-            nomeUsuario = nomeUsuarioTextField.getText();
-            String adm = "0";
-
-            // atribui os 
-            usuarioLogin.setEmail(email);
-            usuarioLogin.setSenha(senha);
-            usuarioLogin.setCep(cep);
-            usuarioLogin.setNomeUsuario(nomeUsuario);
-            usuarioLogin.setAdministrador(adm);
-
-            DAO autenticacao = new DAO();
-
-            ResultSet rsUsuarioValidoCad = autenticacao.autenticacaoCadastro(usuarioLogin);
-            if (rsUsuarioValidoCad.next()) {
-                JOptionPane.showMessageDialog(null, "Email já existente");
-            } else {
-                autenticacao.CadastrarUsuario(usuarioLogin);
-                autenticacao.armazenarDados(usuarioLogin);
-                telaprincipal.emailCache = usuarioLogin.getEmail();
-                telaprincipal.exibirBotao(autenticacao.verificacaoAdmin(usuarioLogin));
-                telaprincipal.setVisible(true);
-                dispose();
-
-            }
-
-        } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "LoginTela: " + erro);
-        };
-
+        Cadastro();
     }//GEN-LAST:event_registrarJButtonActionPerformed
 
     /**
@@ -193,6 +158,49 @@ public class CadastroTela extends javax.swing.JFrame {
         });
     }
 
+    public void Cadastro() {
+        Usuario usuarioLogin = new Usuario();
+        TelaPrincipal telaprincipal = new TelaPrincipal();
+        try {
+            String email, senha, cep, nomeUsuario;
+
+            email = emailTextField.getText();
+            senha = new String(senhaTextField.getPassword());
+            cep = cepTextField.getText();
+            nomeUsuario = nomeUsuarioTextField.getText();
+            String adm = "0";
+
+            // atribui os 
+            usuarioLogin.setEmail(email);
+            usuarioLogin.setSenha(senha);
+            usuarioLogin.setCep(cep);
+            usuarioLogin.setNomeUsuario(nomeUsuario);
+            usuarioLogin.setAdministrador(adm);
+
+            
+            DAO autenticacao = new DAO();
+
+            ResultSet rsUsuarioValidoCad = autenticacao.autenticacaoCadastro(usuarioLogin);
+            if (rsUsuarioValidoCad.next()) {
+                JOptionPane.showMessageDialog(null, "Email já existente");
+            } else if (email.isBlank() || senha.isBlank() || cep.isBlank() || nomeUsuario.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Campos inválidos");
+
+            } else {
+                autenticacao.CadastrarUsuario(usuarioLogin);
+                autenticacao.armazenarDados(usuarioLogin);
+                telaprincipal.emailCache = usuarioLogin.getEmail();
+                telaprincipal.exibirBotao(autenticacao.verificacaoAdmin(usuarioLogin));
+                telaprincipal.setVisible(true);
+                dispose();
+
+            }
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "LoginTela: " + erro);
+        };
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cepTextField;
     private javax.swing.JTextField emailTextField;

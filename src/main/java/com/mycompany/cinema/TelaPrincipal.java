@@ -207,14 +207,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed
         DAO dao = new DAO();
+
         Usuario usuario = new Usuario();
-        usuario.setEmail(emailCache);
+
+        PerfilTela perfil = new PerfilTela();
+
+        EditarPefilTela editarPerfil = new EditarPefilTela();
+        
+        System.out.println("email cache tela:" + emailCache);
+        
 
         dao.armazenarDados(usuario);
 
-        System.out.println(usuario.getCep());
-        PerfilTela add = new PerfilTela();
-        add.setVisible(true);
+
+        perfil.emailCache = emailCache;
+        
+        perfil.exibirDados();
+        
+        System.out.println("email cache tela perfil:" + perfil.emailCache);
+        
+        perfil.setVisible(true);
         dispose();
 
 
@@ -366,6 +378,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
 
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCinemaButton;

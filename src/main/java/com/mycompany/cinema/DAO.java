@@ -250,7 +250,7 @@ public class DAO {
         conn = new ConnectionFactory().obtemConexao();
 
         try {
-            String sql = "Select cep,nomeUsuario,email,administrador from tb_usuario where email = ?";
+            String sql = "Select cep,nomeUsuario,email,senha,id,administrador from tb_usuario where email = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, usuario.getEmail());
@@ -261,6 +261,8 @@ public class DAO {
                 usuario.setCep(rs.getString("cep"));
                 usuario.setNomeUsuario(rs.getString("nomeUsuario"));
                 usuario.setEmail(rs.getString("email"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setId(rs.getInt("id"));
                 usuario.setAdministrador(rs.getString("administrador"));
             }
 
@@ -287,7 +289,7 @@ public class DAO {
 
             pstm.execute();
             pstm.close();
-        } catch (Exception erro) {
+        } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "deu ruim no cadastrarUsuario" + erro);
         }
 
@@ -470,6 +472,31 @@ public class DAO {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "deu ruim no excluir Cine" + erro);
         }
+
+    }
+     
+     
+      public void alterarUsuario(Usuario usu) {
+        String sql = "UPDATE tb_usuario SET nomeUsuario = ? ,cep = ?, email = ?, senha = ?  WHERE id = ?";
+
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, usu.getNomeUsuario());
+            pstm.setString(2, usu.getCep());
+            pstm.setString(4, usu.getSenha());
+            pstm.setString(3, usu.getEmail());
+            pstm.setInt(5, usu.getId());
+
+            pstm.execute();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Usuario alterado");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no alterarUsuario" + erro);
+        }
+
 
     }
 }
