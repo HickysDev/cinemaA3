@@ -116,7 +116,7 @@ public class CadastroTela extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public int local;
     private void registrarJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarJButtonActionPerformed
         // TODO add your handling code here:
 
@@ -158,17 +158,23 @@ public class CadastroTela extends javax.swing.JFrame {
         });
     }
 
+    public static boolean isBetween(int x, int lower, int upper) {
+        return lower <= x && x <= upper;
+    }
+
     public void Cadastro() {
         Usuario usuarioLogin = new Usuario();
         TelaPrincipal telaprincipal = new TelaPrincipal();
         try {
-            String email, senha, cep, nomeUsuario;
+            String email, senha, nomeUsuario;
+            Integer cep;
 
             email = emailTextField.getText();
             senha = new String(senhaTextField.getPassword());
-            cep = cepTextField.getText();
+            cep = Integer.parseInt(cepTextField.getText());
             nomeUsuario = nomeUsuarioTextField.getText();
             String adm = "0";
+            
 
             // atribui os 
             usuarioLogin.setEmail(email);
@@ -176,17 +182,30 @@ public class CadastroTela extends javax.swing.JFrame {
             usuarioLogin.setCep(cep);
             usuarioLogin.setNomeUsuario(nomeUsuario);
             usuarioLogin.setAdministrador(adm);
-
             
+
             DAO autenticacao = new DAO();
 
             ResultSet rsUsuarioValidoCad = autenticacao.autenticacaoCadastro(usuarioLogin);
             if (rsUsuarioValidoCad.next()) {
                 JOptionPane.showMessageDialog(null, "Email já existente");
-            } else if (email.isBlank() || senha.isBlank() || cep.isBlank() || nomeUsuario.isBlank()) {
+            } else if (email.isBlank() || senha.isBlank() || cep == null || nomeUsuario.isBlank()) {
                 JOptionPane.showMessageDialog(null, "Campos inválidos");
 
             } else {
+
+                if (isBetween(cep, 1000000, 1099999)) {
+                    local = 1;
+                    usuarioLogin.setLocal(local);
+                    System.out.println(local);
+
+                } else if (isBetween(cep, 2000000, 2072002)) {
+                    System.out.println("testing case 1 to 5");
+
+                } else {
+                    System.out.println("deu merda");
+                    
+                }
                 autenticacao.CadastrarUsuario(usuarioLogin);
                 autenticacao.armazenarDados(usuarioLogin);
                 telaprincipal.emailCache = usuarioLogin.getEmail();

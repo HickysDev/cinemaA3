@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class TelaPrincipal extends javax.swing.JFrame {
 
     public String emailCache;
+    public int localizacao;
 
     public TelaPrincipal() {
         initComponents();
@@ -42,6 +43,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         cinemasButton1 = new javax.swing.JButton();
+        testeButton = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,35 +151,49 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        testeButton.setText("jButton1");
+        testeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(todosFilmesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(filmesCartazButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(perfilButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(todosCinemasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cinemasButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(AddCinemaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(adicionarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(sairButton))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(todosFilmesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(filmesCartazButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(perfilButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(todosCinemasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cinemasButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(AddCinemaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(adicionarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sairButton))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(testeButton)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+                .addGap(26, 26, 26)
+                .addComponent(testeButton)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(perfilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,19 +241,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         PerfilTela perfil = new PerfilTela();
 
         EditarPefilTela editarPerfil = new EditarPefilTela();
-        
+
         System.out.println("email cache tela:" + emailCache);
-        
 
         dao.armazenarDados(usuario);
 
-
         perfil.emailCache = emailCache;
-        
+
         perfil.exibirDados();
-        
+
         System.out.println("email cache tela perfil:" + perfil.emailCache);
-        
+
         perfil.setVisible(true);
         dispose();
 
@@ -279,9 +293,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_filmesCartazButtonActionPerformed
 
+    public static boolean isBetween(int x, int lower, int upper) {
+        return lower <= x && x <= upper;
+    }
+
     private void cinemasButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinemasButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cinemasButton1ActionPerformed
+
+    private void testeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testeButtonActionPerformed
+        // TODO add your handling code here:
+        Usuario usuario = new Usuario();
+        DAO dao = new DAO();
+
+        usuario.setEmail(emailCache);
+        dao.armazenarDados(usuario);
+
+        int cep = usuario.getCep();
+
+        if (isBetween(cep, 1000000, 1099999)) {
+            localizacao = 1;
+            System.out.println(localizacao);
+
+        } else if (isBetween(cep, 2000000, 2072002)) {
+            System.out.println("testing case 1 to 5");
+
+        } else {
+            System.out.println("deu merda");
+            System.out.println("deu merda: " + usuario.getCep());
+        }
+    }//GEN-LAST:event_testeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,6 +386,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }
 
+    // TODO add your handling code here:
     private void listarTodosFilmesTabela() {
 
         ArrayList<Filme> listaFilme = new ArrayList<>();
@@ -399,32 +441,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
 
     }
-    
-    public void listarCinemasTabela(){
-        
+
+    public void listarCinemasTabela() {
+
         Cinema cinema = new Cinema();
         Usuario usuario = new Usuario();
         DAO dao = new DAO();
-        
+
         usuario.setEmail(emailCache);
-        
+
         dao.armazenarDados(usuario);
-        
-        
+
     }
-    
+
     public void listarCinemasProximosTabela() {
-        
+
         Cinema cinema = new Cinema();
         Usuario usuario = new Usuario();
         DAO dao = new DAO();
-        
+
         usuario.setEmail(emailCache);
-        
+
         dao.armazenarDados(usuario);
-          
+
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCinemaButton;
@@ -439,6 +480,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton perfilButton;
     private javax.swing.JTable principalTable;
     private javax.swing.JButton sairButton;
+    private javax.swing.JButton testeButton;
     private javax.swing.JButton todosCinemasButton;
     private javax.swing.JButton todosFilmesButton;
     // End of variables declaration//GEN-END:variables

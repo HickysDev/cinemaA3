@@ -149,7 +149,7 @@ public class EditarPefilTela extends javax.swing.JFrame {
 
         dao.armazenarDados(usuario);
         nomeUsuarioTextField.setText(usuario.getNomeUsuario());
-        cepTextField.setText(usuario.getCep());
+        cepTextField.setText(String.valueOf(usuario.getCep()));
         emailTextField.setText(usuario.getEmail());
         senhaTextField.setText(usuario.getSenha());
         idLabel.setText(String.valueOf(usuario.getId()));
@@ -159,12 +159,12 @@ public class EditarPefilTela extends javax.swing.JFrame {
     private void AlterarUsuario() {
         String email;
         String nomeUsuario;
-        String cep;
+        Integer cep;
         String senha;
         Integer id;
         email = emailTextField.getText();
         nomeUsuario = nomeUsuarioTextField.getText();
-        cep = cepTextField.getText();
+        cep = Integer.parseInt(cepTextField.getText());
         senha = senhaTextField.getText();
         id = Integer.parseInt(idLabel.getText());
 
@@ -172,7 +172,7 @@ public class EditarPefilTela extends javax.swing.JFrame {
 
         DAO dao = new DAO();
 
-        if (nomeUsuario.isBlank() || cep.isBlank() || senha.isBlank() || email.isBlank()) {
+        if (nomeUsuario.isBlank() || cep == null || senha.isBlank() || email.isBlank()) {
             JOptionPane.showMessageDialog(null, "Campos inválidos");
         } else {
             usu.setEmail(email);

@@ -124,7 +124,7 @@ public class PerfilTela extends javax.swing.JFrame {
         usuario.setEmail(emailCache);
         System.out.println("id tela perfil :" + usuario.getId());
         dao.armazenarDados(usuario);
-        cepLabel.setText(usuario.getCep());
+        cepLabel.setText(String.valueOf("0"+usuario.getCep()));
         nomeUsuarioLabel.setText(usuario.getNomeUsuario());
         emailLabel.setText(usuario.getEmail());
         idLabel.setText(String.valueOf(usuario.getId()));

@@ -68,7 +68,7 @@ public class DAO {
             // Preenche os dados
             ps.setString(1, usuario.getNomeUsuario());
             ps.setString(2, usuario.getEmail());
-            ps.setString(3, usuario.getCep());
+            ps.setInt(3, usuario.getCep());
             ps.setString(4, usuario.getSenha());
             ps.setString(5, adm);
             //Executar o comando
@@ -190,6 +190,7 @@ public class DAO {
 
             while (rs.next()) {
                 Filme filme = new Filme();
+                TelaPrincipal tela = new TelaPrincipal();
                 filme.setId(rs.getInt("id"));
                 filme.setNomeFilme(rs.getString("nomeFilme"));
                 filme.setDataLancamento(rs.getString("dataLancamento"));
@@ -261,7 +262,7 @@ public class DAO {
 
             while (rs.next()) {
                 usuario.setId(rs.getInt("id"));
-                usuario.setCep(rs.getString("cep"));
+                usuario.setCep(rs.getInt("cep"));
                 usuario.setNomeUsuario(rs.getString("nomeUsuario"));
                 usuario.setEmail(rs.getString("email"));
                 usuario.setId(rs.getInt("id"));
@@ -276,7 +277,7 @@ public class DAO {
     }
 
     public void CadastrarUsuario(Usuario usuario) {
-        String sql = "INSERT INTO tb_usuario (nomeUsuario,cep,email,senha,administrador) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO tb_usuario (nomeUsuario,cep,email,senha,administrador,local) VALUES (?,?,?,?,?,?)";
 
         conn = new ConnectionFactory().obtemConexao();
 
@@ -284,10 +285,11 @@ public class DAO {
 
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, usuario.getNomeUsuario());
-            pstm.setString(2, usuario.getCep());
+            pstm.setInt(2, usuario.getCep());
             pstm.setString(3, usuario.getEmail());
             pstm.setString(4, usuario.getSenha());
             pstm.setString(5, usuario.getAdministrador());
+            pstm.setInt(6, usuario.getLocal());
 
             pstm.execute();
             pstm.close();
@@ -487,7 +489,7 @@ public class DAO {
 
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, usu.getNomeUsuario());
-            pstm.setString(2, usu.getCep());
+            pstm.setInt(2, usu.getCep());
             pstm.setString(4, usu.getSenha());
             pstm.setString(3, usu.getEmail());
             pstm.setInt(5, usu.getId());

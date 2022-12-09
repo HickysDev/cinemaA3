@@ -8,11 +8,20 @@ import javax.swing.JOptionPane;
 public class Usuario {
     
     private String nomeUsuario;
-    private String cep;
+    private int cep;
     private String email;
     private String senha;
     private String administrador;
     private Integer id;
+    private Integer local;
+
+    public Integer getLocal() {
+        return local;
+    }
+
+    public void setLocal(Integer local) {
+        this.local = local;
+    }
     
     //getters e setters
 
@@ -48,11 +57,11 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public String getCep() {
+    public Integer getCep() {
         return cep;
     }
 
-    public void setCep(String cep) {
+    public void setCep(Integer cep) {
         this.cep = cep;
     }
 
@@ -65,101 +74,4 @@ public class Usuario {
     }
     
     // Fim do getters e setters
-    
-    public void inserir(){
-        //Definir comando SQL
-        String sql = "INSERT INTO tb_usuario(nomeUsuario, cep, email, senha) VALUES (?,?,?,?)";
-        
-        //Abrir conexao com o db
-        ConnectionFactory factory = new ConnectionFactory();
-        try(Connection c = factory.obtemConexao()){
-            // Compila o comando
-            PreparedStatement ps = c.prepareStatement(sql);
-            
-            // Preenche os dados
-            ps.setString(1, nomeUsuario);
-            ps.setString(2, cep);
-            ps.setString(3, email);
-            ps.setString(4, senha);
-            //Executar o comando
-            ps.execute();
-        }
-        catch(Exception e){
-        }
-    }
-    
-    public void atualizar(){
-    //Definir comando SQL
-        String sql = "UPDATE tb_usuario SET nomeUsuario = ?, cep = ?, email = ? WHERE id = ?";
-    //Abrir conexao com o db
-        ConnectionFactory factory = new ConnectionFactory();
-        
-        try(Connection c = factory.obtemConexao()){
-            // Compila o comando
-            PreparedStatement ps = c.prepareStatement(sql);
-            ps.setString(1, nomeUsuario);
-            ps.setString(2, cep);
-            ps.setString(3, email);
-            ps.setInt(4, id);
-            
-            //Executar o comando
-            ps.execute();
-  
-        } catch(Exception e){
-        
-        }
-    }
-    
-    public void deletar(){
-         //Definir comando SQL
-        String sql = "DELETE FROM tb_usuario WHERE id= ?";
-        
-        //Abrir conexao com o db
-        ConnectionFactory factory = new ConnectionFactory();
-        
-        try(Connection c = factory.obtemConexao()){
-            //Compila o comando
-            PreparedStatement ps = c.prepareStatement(sql);
-            ps.setInt(1, id);
-            
-            //Executar o comando
-            ps.execute();
-  
-        } catch(Exception e){
-        
-        }
-    }
-    
-    public void listar(){
-         //Definir comando SQL (Mostrando todos os valores)
-        String sql = "SELECT * FROM tb_usuario";
-        
-        //Abrir conexao com o db
-        ConnectionFactory factory = new ConnectionFactory();
-        
-        try(Connection c = factory.obtemConexao()){
-            //Compila o comando
-            PreparedStatement ps = c.prepareStatement(sql);
-            
-            ResultSet rs = ps.executeQuery();
-            
-            //Mostrando a lista
-            while (rs.next()){
-                int id = rs.getInt("id");
-                String nomeUsuario = rs.getString("nomeUsuario");
-                String cep = rs.getString("cep");
-                String email = rs.getString("email");
-                String senha = rs.getString("senha");
-                
-                String aux = String.format("Id: %d, Nome: %s, Cep %s,  Email %s,  Senha %s", id, nomeUsuario, cep, email, senha);
-                
-                JOptionPane.showMessageDialog(null, aux);
-            }
-            //Executar o comando
-            ps.execute();
-  
-        } catch(Exception e){
-        
-        }
-    }
 }
