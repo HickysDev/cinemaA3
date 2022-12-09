@@ -151,11 +151,11 @@ public class DAO {
 
     }
     ResultSet rs;
-    
+
     ArrayList<Filme> listaFilme = new ArrayList<>();
     ArrayList<Filme> listaFilmeCartaz = new ArrayList<>();
     ArrayList<Cinema> listaCine = new ArrayList<>();
-    
+
     ArrayList<Cinema> listaCineFilmeTela = new ArrayList<>();
     ArrayList<Filme> listaFilmeCinemaTela = new ArrayList<>();
 
@@ -525,12 +525,12 @@ public class DAO {
         }
 
     }
-    
-        public void armazenarDadosCinema(Cinema cinema) {
+
+    public void armazenarDadosCinema(Cinema cinema) {
         conn = new ConnectionFactory().obtemConexao();
 
         try {
-            String sql = "SELECT id,nomeCinema,localizacao FROM tb_filme Where id = ?";
+            String sql = "SELECT id,nomeCinema,localizacao FROM tb_cinema Where id = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, cinema.getIdCine());
@@ -544,7 +544,7 @@ public class DAO {
             }
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "DAO :" + erro);
+            JOptionPane.showMessageDialog(null, "DAO armazenarDadosCinema :" + erro);
 
         }
 
@@ -556,7 +556,7 @@ public class DAO {
         conn = new ConnectionFactory().obtemConexao();
         try {
             pstm = conn.prepareStatement(sql);
-            System.out.println("filmeTelaTable no DAO: "+idCache);
+            System.out.println("filmeTelaTable no DAO: " + idCache);
             pstm.setInt(1, idCache);
             rs = pstm.executeQuery();
 
@@ -575,8 +575,31 @@ public class DAO {
 
     }
 
-    public void cinemaTelaTable() {
+    public ArrayList<Filme> cinemaTelaTable(int idCache) {
+        
+        String sql = "select f.id, f.nomeFilme, f.dataLancamento, f.cartaz from tb_filme f join filme_existe_cinema e on f.id = e.idFilme join tb_cinema c on c.id = e.idCinema where idCinema = ?";
+        conn = new ConnectionFactory().obtemConexao();
+        try {
+            pstm = conn.prepareStatement(sql);
+            System.out.println("cinemaTelaTable no DAO: " + idCache);
+            pstm.setInt(1, idCache);
+            rs = pstm.executeQuery();
 
+            while (rs.next()) {
+                Filme filme = new Filme();
+                
+                filme.setId(rs.getInt("id"));
+                filme.setNomeFilme(rs.getString("nomeFilme"));
+                filme.setDataLancamento(rs.getString("dataLancamento"));
+                filme.setCartaz(rs.getInt("cartaz"));
+
+                listaFilmeCinemaTela.add(filme);
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no TableCinema" + erro);
+        }
+        return listaFilmeCinemaTela;
     }
 
 }

@@ -396,6 +396,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 if (e.getClickCount() == 2) {
                     CinemaTela cinematela = new CinemaTela();
                     cinematela.idCache = cinemaIdCache;
+                    cinematela.exibirCinema();
+                    cinematela.listaFilmes();
                     cinematela.setVisible(true);
                     dispose();
                 }
