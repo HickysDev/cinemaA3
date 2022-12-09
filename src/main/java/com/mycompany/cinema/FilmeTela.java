@@ -1,6 +1,9 @@
 package com.mycompany.cinema;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 
 
 public class FilmeTela extends javax.swing.JFrame {
@@ -163,8 +166,28 @@ public class FilmeTela extends javax.swing.JFrame {
     }
     
     public void listaCinemas(){
-        
-        
+        DAO dao = new DAO();
+        ArrayList<Cinema> listaCineFilmeTela = new ArrayList<>();
+
+        try {
+            DefaultTableModel model = (DefaultTableModel) cinemaTable.getModel();
+            model.setRowCount(0);
+            model.getDataVector().removeAllElements();
+            model.fireTableDataChanged();
+
+            listaCineFilmeTela = dao.filmeTelaTable(idCache);
+
+            for (int num = 0; num < listaCineFilmeTela.size(); num++) {
+                model.addRow(new Object[]{
+                    listaCineFilmeTela.get(num).getIdCine(),
+                    listaCineFilmeTela.get(num).getNomeCinema(),
+                    listaCineFilmeTela.get(num).getLocalizacao(),});
+
+            }
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "erro no listarFilmesCartazTabela" + erro);
+        }
         
     }
     

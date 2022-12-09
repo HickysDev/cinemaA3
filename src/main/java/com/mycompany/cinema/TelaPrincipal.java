@@ -18,9 +18,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public String emailCache;
     public int localizacao;
+    public int cinemaIdCache;
+    public int filmeIdCache;
 
     public TelaPrincipal() {
         initComponents();
+        listarCinemasTabela();
         listarTodosFilmesTabela();
         this.selecionarLinhaTabela();
     }
@@ -41,7 +44,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         principalTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        cinemaTable = new javax.swing.JTable();
         cinemasButton1 = new javax.swing.JButton();
         testeButton = new javax.swing.JButton();
 
@@ -130,19 +133,38 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         principalTable.setFocusable(false);
         jScrollPane2.setViewportView(principalTable);
+        if (principalTable.getColumnModel().getColumnCount() > 0) {
+            principalTable.getColumnModel().getColumn(0).setResizable(false);
+            principalTable.getColumnModel().getColumn(1).setResizable(false);
+            principalTable.getColumnModel().getColumn(2).setResizable(false);
+            principalTable.getColumnModel().getColumn(3).setResizable(false);
+        }
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        cinemaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nome Cinema", "Local"
             }
-        ));
-        jScrollPane3.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(cinemaTable);
+        if (cinemaTable.getColumnModel().getColumnCount() > 0) {
+            cinemaTable.getColumnModel().getColumn(0).setResizable(false);
+            cinemaTable.getColumnModel().getColumn(1).setResizable(false);
+            cinemaTable.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         cinemasButton1.setText("Cinemas");
         cinemasButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -202,14 +224,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(filmesCartazButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cinemasButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(todosCinemasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(103, 103, 103)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cinemasButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sairButton)
@@ -266,11 +287,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_adicionarButtonActionPerformed
 
     private void todosCinemasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosCinemasButtonActionPerformed
-        // TODO add your handling code here:
+        listarCinemasTabela();
     }//GEN-LAST:event_todosCinemasButtonActionPerformed
 
     private void todosFilmesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosFilmesButtonActionPerformed
-
         listarTodosFilmesTabela();
 
     }//GEN-LAST:event_todosFilmesButtonActionPerformed
@@ -288,7 +308,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_AddCinemaButtonActionPerformed
 
     private void filmesCartazButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filmesCartazButtonActionPerformed
-
         listarFilmesEmCartazTabela();
 
     }//GEN-LAST:event_filmesCartazButtonActionPerformed
@@ -298,7 +317,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     private void cinemasButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinemasButton1ActionPerformed
-        // TODO add your handling code here:
+        listarCinemaProximosTabela();
     }//GEN-LAST:event_cinemasButton1ActionPerformed
 
     private void testeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testeButtonActionPerformed
@@ -362,22 +381,42 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     private void selecionarLinhaTabela() {
-        FilmeTela telafilme = new FilmeTela();
 
+        cinemaTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            int selectedRow = cinemaTable.getSelectedRow();
+            if (selectedRow == -1) {
+                return;
+            }
+            cinemaIdCache = Integer.parseInt(cinemaTable.getValueAt(cinemaTable.getSelectedRow(), 0).toString());
+          
+        });
+        cinemaTable.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+
+                if (e.getClickCount() == 2) {
+                    CinemaTela cinematela = new CinemaTela();
+                    cinematela.idCache = cinemaIdCache;
+                    cinematela.setVisible(true);
+                    dispose();
+                }
+            }
+        });
+        
         principalTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
             int selectedRow = principalTable.getSelectedRow();
             if (selectedRow == -1) {
                 return;
             }
-            telafilme.idCache = Integer.parseInt(principalTable.getValueAt(principalTable.getSelectedRow(), 0).toString());
-            telafilme.exibirFilme();
-            System.out.println(telafilme.idCache);
+            filmeIdCache = Integer.parseInt(principalTable.getValueAt(principalTable.getSelectedRow(), 0).toString());
         });
         principalTable.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
 
                 if (e.getClickCount() == 2) {
-
+                    FilmeTela telafilme = new FilmeTela();
+                    telafilme.idCache = filmeIdCache;
+                    telafilme.exibirFilme();
+                    telafilme.listaCinemas();
                     telafilme.setVisible(true);
                     dispose();
                 }
@@ -444,25 +483,61 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public void listarCinemasTabela() {
 
-        Cinema cinema = new Cinema();
-        Usuario usuario = new Usuario();
-        DAO dao = new DAO();
+        ArrayList<Cinema> listaCinema = new ArrayList<>();
 
-        usuario.setEmail(emailCache);
+        try {
+            DAO dao = new DAO();
+            DefaultTableModel model = (DefaultTableModel) cinemaTable.getModel();
+            model.setRowCount(0);
+            model.getDataVector().removeAllElements();
+            model.fireTableDataChanged();
 
-        dao.armazenarDados(usuario);
+            listaCinema = dao.TableCinema();
+
+            for (int num = 0; num < listaCinema.size(); num++) {
+                model.addRow(new Object[]{
+                    listaCinema.get(num).getIdCine(),
+                    listaCinema.get(num).getNomeCinema(),
+                    listaCinema.get(num).getLocalizacao(),});
+
+            }
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "erro no listarFilmesCartazTabela" + erro);
+        }
 
     }
 
-    public void listarCinemasProximosTabela() {
+    public void listarCinemaProximosTabela() {
 
-        Cinema cinema = new Cinema();
+        ArrayList<Cinema> listaCinema = new ArrayList<>();
         Usuario usuario = new Usuario();
         DAO dao = new DAO();
-
+        
         usuario.setEmail(emailCache);
-
         dao.armazenarDados(usuario);
+        System.out.println("Local usuario Tela Principal: "+ usuario.getLocal());
+        
+
+        try {
+            DefaultTableModel model = (DefaultTableModel) cinemaTable.getModel();
+            model.setRowCount(0);
+            model.getDataVector().removeAllElements();
+            model.fireTableDataChanged();
+
+            listaCinema = dao.TableCinemaProximo(usuario);
+
+            for (int num = 0; num < listaCinema.size(); num++) {
+                model.addRow(new Object[]{
+                    listaCinema.get(num).getIdCine(),
+                    listaCinema.get(num).getNomeCinema(),
+                    listaCinema.get(num).getLocalizacao(),});
+
+            }
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "erro no listarFilmesCartazTabela" + erro);
+        }
 
     }
 
@@ -470,13 +545,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCinemaButton;
     private javax.swing.JButton adicionarButton;
+    private javax.swing.JTable cinemaTable;
     private javax.swing.JButton cinemasButton1;
     private javax.swing.JButton filmesCartazButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JButton perfilButton;
     private javax.swing.JTable principalTable;
     private javax.swing.JButton sairButton;

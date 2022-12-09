@@ -151,9 +151,13 @@ public class DAO {
 
     }
     ResultSet rs;
+    
     ArrayList<Filme> listaFilme = new ArrayList<>();
     ArrayList<Filme> listaFilmeCartaz = new ArrayList<>();
     ArrayList<Cinema> listaCine = new ArrayList<>();
+    
+    ArrayList<Cinema> listaCineFilmeTela = new ArrayList<>();
+    ArrayList<Filme> listaFilmeCinemaTela = new ArrayList<>();
 
     public ArrayList<Filme> TableFilme() {
 
@@ -232,6 +236,34 @@ public class DAO {
         conn = new ConnectionFactory().obtemConexao();
         try {
             pstm = conn.prepareStatement(sql);
+
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                Cinema cine = new Cinema();
+                cine.setIdCine(rs.getInt("id"));
+                cine.setNomeCinema(rs.getString("nomeCinema"));
+                cine.setLocalizacao(rs.getInt("localizacao"));
+
+                listaCine.add(cine);
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no TableCinema" + erro);
+        }
+        return listaCine;
+    }
+
+    public ArrayList<Cinema> TableCinemaProximo(Usuario usuario) {
+
+        String sql = "SELECT id,nomeCinema,localizacao FROM tb_cinema WHERE localizacao = ?";
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            System.out.println("Local usuario DAO: " + usuario.getLocal());
+
+            pstm.setInt(1, usuario.getLocal());
 
             rs = pstm.executeQuery();
 
@@ -331,39 +363,6 @@ public class DAO {
 
     }
 
-    public void loading() {
-        conn = new ConnectionFactory().obtemConexao();
-        JTable tbl = new JTable();
-
-        try {
-            String[] title = {"First Name", "Last Name", "Picture"};
-            String sql = "select * from tb_filme";
-
-            DefaultTableModel model = new DefaultTableModel(null, title) {
-                @Override
-                public Class<?> getColumnClass(int column) {
-                    if (column == 2) {
-                        return ImageIcon.class;
-                    }
-                    return Object.class;
-                }
-            };
-
-            pstm = conn.prepareStatement(sql);
-            ResultSet rs = pstm.executeQuery(sql);
-            Object[] fila = new Object[4];
-            while (rs.next()) {
-                fila[0] = rs.getString("nomeFilme");
-                fila[1] = rs.getString("sinopse");
-                fila[2] = rs.getString("cartaz");
-                model.addRow(fila);
-            }
-            tbl.setModel(model);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
-
     public void alterarFilme(Filme filme) {
         String sql = "UPDATE tb_filme SET nomeFilme = ?,cartaz = ? ,sinopse = ? ,dataLancamento = ?  WHERE id = ?";
 
@@ -385,8 +384,8 @@ public class DAO {
         }
 
     }
-    
-     public void excluirFilmeExiste(Filme filme) {
+
+    public void excluirFilmeExiste(Filme filme) {
         String sql = "DELETE FROM filme_existe_cinema WHERE idFilme= ?";
 
         conn = new ConnectionFactory().obtemConexao();
@@ -404,7 +403,7 @@ public class DAO {
 
     }
 
-     public void excluirFilme(Filme filme) {
+    public void excluirFilme(Filme filme) {
         String sql = "DELETE FROM tb_filme WHERE id= ?";
 
         conn = new ConnectionFactory().obtemConexao();
@@ -421,8 +420,8 @@ public class DAO {
         }
 
     }
-     
-      public void alterarCinema(Cinema cine) {
+
+    public void alterarCinema(Cinema cine) {
         String sql = "UPDATE tb_cinema SET nomeCinema = ? ,localizacao = ?  WHERE id = ?";
 
         conn = new ConnectionFactory().obtemConexao();
@@ -441,10 +440,9 @@ public class DAO {
             JOptionPane.showMessageDialog(null, "deu ruim no alterarCine" + erro);
         }
 
-
     }
-    
-     public void excluirCinemaExiste(Cinema cine) {
+
+    public void excluirCinemaExiste(Cinema cine) {
         String sql = "DELETE FROM filme_existe_cinema WHERE idCinema= ?";
 
         conn = new ConnectionFactory().obtemConexao();
@@ -460,10 +458,9 @@ public class DAO {
             JOptionPane.showMessageDialog(null, "deu ruim no excluir Cine Existe" + erro);
         }
 
-
     }
 
-     public void excluirCinema(Cinema cine) {
+    public void excluirCinema(Cinema cine) {
         String sql = "DELETE FROM tb_cinema WHERE id= ?";
 
         conn = new ConnectionFactory().obtemConexao();
@@ -480,9 +477,8 @@ public class DAO {
         }
 
     }
-     
-     
-      public void alterarUsuario(Usuario usu) {
+
+    public void alterarUsuario(Usuario usu) {
         String sql = "UPDATE tb_usuario SET nomeUsuario = ? ,cep = ?, email = ?, senha = ?  WHERE id = ?";
 
         conn = new ConnectionFactory().obtemConexao();
@@ -503,10 +499,9 @@ public class DAO {
             JOptionPane.showMessageDialog(null, "deu ruim no alterarUsuario" + erro);
         }
 
-
     }
-      
-      public void armazenarDadosFilme(Filme filme) {
+
+    public void armazenarDadosFilme(Filme filme) {
         conn = new ConnectionFactory().obtemConexao();
 
         try {
@@ -530,5 +525,58 @@ public class DAO {
         }
 
     }
-      
+    
+        public void armazenarDadosCinema(Cinema cinema) {
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+            String sql = "SELECT id,nomeCinema,localizacao FROM tb_filme Where id = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, cinema.getIdCine());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                cinema.setIdCine(rs.getInt("id"));
+                cinema.setNomeCinema(rs.getString("nomeCinema"));
+                cinema.setLocalizacao(rs.getInt("localizacao"));
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "DAO :" + erro);
+
+        }
+
+    }
+
+    public ArrayList<Cinema> filmeTelaTable(int idCache) {
+
+        String sql = "select c.id, c.nomeCinema from tb_filme f join filme_existe_cinema e on f.id = e.idFilme join tb_cinema c on c.id = e.idCinema where idFilme = ?";
+        conn = new ConnectionFactory().obtemConexao();
+        try {
+            pstm = conn.prepareStatement(sql);
+            System.out.println("filmeTelaTable no DAO: "+idCache);
+            pstm.setInt(1, idCache);
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                Cinema cine = new Cinema();
+                cine.setIdCine(rs.getInt("id"));
+                cine.setNomeCinema(rs.getString("nomeCinema"));
+
+                listaCineFilmeTela.add(cine);
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "deu ruim no TableCinema" + erro);
+        }
+        return listaCineFilmeTela;
+
+    }
+
+    public void cinemaTelaTable() {
+
+    }
+
 }

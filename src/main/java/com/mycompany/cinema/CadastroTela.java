@@ -116,7 +116,7 @@ public class CadastroTela extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public int local;
+    public int local;
     private void registrarJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarJButtonActionPerformed
         // TODO add your handling code here:
 
