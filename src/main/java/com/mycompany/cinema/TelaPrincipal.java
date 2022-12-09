@@ -17,11 +17,11 @@ import javax.swing.table.DefaultTableModel;
 public class TelaPrincipal extends javax.swing.JFrame {
 
     public String emailCache;
-    private boolean listaCarregada = false;
 
     public TelaPrincipal() {
         initComponents();
-
+        listarTodosFilmesTabela();
+        this.selecionarLinhaTabela();
     }
 
     @SuppressWarnings("unchecked")
@@ -114,7 +114,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "", "Nome", "Data Lançamento", "Em Cartaz"
+                "ID", "Nome", "Data Lançamento", "Em Cartaz"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -125,6 +125,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        principalTable.setFocusable(false);
         jScrollPane2.setViewportView(principalTable);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -197,6 +198,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void exibirBotao(boolean permissao) {
         System.out.println("permissao: " + permissao);
         if (permissao == true) {
+            cinemasButton.setVisible(true);
             adicionarButton.setVisible(true);
             System.out.println("deu certo");
         } else {
@@ -244,8 +246,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cinemasButtonActionPerformed
 
     private void todosFilmesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosFilmesButtonActionPerformed
+
         listarTodosFilmesTabela();
-        this.listaCarregada = true;
+
     }//GEN-LAST:event_todosFilmesButtonActionPerformed
 
     private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
@@ -261,8 +264,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_AddCinemaButtonActionPerformed
 
     private void filmesCartazButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filmesCartazButtonActionPerformed
+
         listarFilmesEmCartazTabela();
-        this.listaCarregada = true;
+
     }//GEN-LAST:event_filmesCartazButtonActionPerformed
 
     /**
@@ -302,26 +306,43 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }
 
-    private void listarTodosFilmesTabela() {
+    private void selecionarLinhaTabela() {
+        FilmeTela telafilme = new FilmeTela();
 
         principalTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
-
-            System.out.println(principalTable.getValueAt(principalTable.getSelectedRow(), 0).toString());
-
-            int id = Integer.parseInt(principalTable.getValueAt(principalTable.getSelectedRow(), 0).toString());
-
-            Filme filme = new Filme();
-
-            filme.setId(id);
-
+            int selectedRow = principalTable.getSelectedRow();
+            if (selectedRow == -1) {
+                return;
+            }
+            telafilme.idCache = Integer.parseInt(principalTable.getValueAt(principalTable.getSelectedRow(), 0).toString());
+            telafilme.exibirFilme();
+            System.out.println(telafilme.idCache);
         });
+        principalTable.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+
+                if (e.getClickCount() == 2) {
+
+                    telafilme.setVisible(true);
+                    dispose();
+                }
+            }
+        });
+
+    }
+
+    private void listarTodosFilmesTabela() {
+
+        ArrayList<Filme> listaFilme = new ArrayList<>();
 
         try {
             DAO dao = new DAO();
             DefaultTableModel model = (DefaultTableModel) principalTable.getModel();
-            model.setNumRows(0);
+            model.setRowCount(0);
+            model.getDataVector().removeAllElements();
+            model.fireTableDataChanged();
 
-            ArrayList<Filme> listaFilme = dao.TableFilme();
+            listaFilme = dao.TableFilme();
 
             for (int num = 0; num < listaFilme.size(); num++) {
                 model.addRow(new Object[]{
@@ -331,38 +352,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 });
 
             }
-
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "erro no listarFilmesTabela" + erro);
+            JOptionPane.showMessageDialog(null, "erro no listarFilmesTabela: " + erro);
         }
 
     }
 
     private void listarFilmesEmCartazTabela() {
 
-        principalTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
-
-            System.out.println(principalTable.getValueAt(principalTable.getSelectedRow(), 0).toString());
-
-            String id = principalTable.getValueAt(principalTable.getSelectedRow(), 0).toString();
-
-            if (id.equals("1")) {
-                TelaPrincipal tela = new TelaPrincipal();
-
-                tela.setVisible(true);
-
-                dispose();
-
-            }
-
-        });
+        ArrayList<Filme> listaFilmeCartaz = new ArrayList<>();
 
         try {
             DAO dao = new DAO();
             DefaultTableModel model = (DefaultTableModel) principalTable.getModel();
-            model.setNumRows(0);
+            model.setRowCount(0);
+            model.getDataVector().removeAllElements();
+            model.fireTableDataChanged();
 
-            ArrayList<Filme> listaFilmeCartaz = dao.TableFilmeCartaz();
+            listaFilmeCartaz = dao.TableFilmeCartaz();
 
             for (int num = 0; num < listaFilmeCartaz.size(); num++) {
                 model.addRow(new Object[]{

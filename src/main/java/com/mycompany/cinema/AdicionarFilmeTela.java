@@ -71,13 +71,13 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
 
         filmeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "IdFilme", "NomeFilme", "Cartaz"
+                "ID", "Nome Filme", "Data Lançamento", "Cartaz"
             }
         ));
         jScrollPane1.setViewportView(filmeTable);

@@ -167,6 +167,7 @@ public class DAO {
                 Filme filme = new Filme();
                 filme.setId(rs.getInt("id"));
                 filme.setNomeFilme(rs.getString("nomeFilme"));
+                filme.setDataLancamento(rs.getString("dataLancamento"));
                 filme.setCartaz(rs.getInt("cartaz"));
 
                 listaFilme.add(filme);
@@ -191,6 +192,7 @@ public class DAO {
                 Filme filme = new Filme();
                 filme.setId(rs.getInt("id"));
                 filme.setNomeFilme(rs.getString("nomeFilme"));
+                filme.setDataLancamento(rs.getString("dataLancamento"));
                 filme.setCartaz(rs.getInt("cartaz"));
 
                 listaFilmeCartaz.add(filme);
@@ -250,7 +252,7 @@ public class DAO {
         conn = new ConnectionFactory().obtemConexao();
 
         try {
-            String sql = "Select cep,nomeUsuario,email,senha,id,administrador from tb_usuario where email = ?";
+            String sql = "Select id,cep,nomeUsuario,email,administrador from tb_usuario where email = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, usuario.getEmail());
@@ -258,6 +260,7 @@ public class DAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                usuario.setId(rs.getInt("id"));
                 usuario.setCep(rs.getString("cep"));
                 usuario.setNomeUsuario(rs.getString("nomeUsuario"));
                 usuario.setEmail(rs.getString("email"));
@@ -499,4 +502,30 @@ public class DAO {
 
 
     }
+      
+      public void armazenarDadosFilme(Filme filme) {
+        conn = new ConnectionFactory().obtemConexao();
+
+        try {
+            String sql = "SELECT id,nomeFilme,cartaz,sinopse,dataLancamento FROM tb_filme Where id = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, filme.getId());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                filme.setNomeFilme(rs.getString("nomeFilme"));
+                filme.setSinopse(rs.getString("sinopse"));
+                filme.setDataLancamento(rs.getString("dataLancamento"));
+                filme.setCartaz(rs.getInt("cartaz"));
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "DAO :" + erro);
+
+        }
+
+    }
+      
 }

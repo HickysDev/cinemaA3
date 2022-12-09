@@ -1,8 +1,11 @@
 package com.mycompany.cinema;
 
+import javax.swing.JTextArea;
+
 
 public class FilmeTela extends javax.swing.JFrame {
-
+    public int idCache;
+    
 
     public FilmeTela() {
         initComponents();
@@ -139,12 +142,35 @@ public class FilmeTela extends javax.swing.JFrame {
         TelaPrincipal tela = new TelaPrincipal();
         
         tela.setVisible(true);
+        dispose();
     }//GEN-LAST:event_VoltarButtonActionPerformed
+        
+    public void exibirFilme(){
     
+        Filme filme = new Filme();
+        DAO dao = new DAO();
+        
+        filme.setId(idCache);
+        
+        dao.armazenarDadosFilme(filme);
+        
+        System.out.println(filme.getNomeFilme());
+        
+        nomeFilmeText.setText(filme.getNomeFilme());
+        dataText.setText(filme.getSinopse());
+        sinopseText.setText(filme.getSinopse());
+        
+    }
     
+    public void listaCinemas(){
+        
+        
+        
+    }
     
-
     public static void main(String args[]) {
+        
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
