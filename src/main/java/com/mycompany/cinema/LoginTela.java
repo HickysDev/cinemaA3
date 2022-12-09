@@ -139,7 +139,6 @@ public class LoginTela extends javax.swing.JFrame {
             if (rsUsuarioValido.next()) {
                 autenticacao.armazenarDados(usuarioLogin);
                 telaprincipal.emailCache = usuarioLogin.getEmail();
-                telaprincipal.listarCinemasTabela();
                 telaprincipal.exibirBotao(autenticacao.verificacaoAdmin(usuarioLogin));
                 telaprincipal.setVisible(true);
 
