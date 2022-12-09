@@ -254,7 +254,7 @@ public class DAO {
         conn = new ConnectionFactory().obtemConexao();
 
         try {
-            String sql = "Select id,cep,nomeUsuario,email,administrador from tb_usuario where email = ?";
+            String sql = "Select id,cep,nomeUsuario,email,administrador,local from tb_usuario where email = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, usuario.getEmail());
@@ -268,6 +268,7 @@ public class DAO {
                 usuario.setEmail(rs.getString("email"));
                 usuario.setId(rs.getInt("id"));
                 usuario.setAdministrador(rs.getString("administrador"));
+                usuario.setLocal(rs.getInt("local"));
             }
 
         } catch (SQLException erro) {
