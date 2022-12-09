@@ -56,7 +56,7 @@ public class DAO {
 
     public ResultSet cadastrarUsuario(Usuario usuario) {
         //Definir comando SQL
-        String sql = "INSERT INTO tb_usuario(nomeUsuario, cep, email, senha) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO tb_usuario(nomeUsuario, cep, email, senha,administrador, local) VALUES (?,?,?,?,?,?)";
 
         //Abrir conexao com o db
         ConnectionFactory factory = new ConnectionFactory();
@@ -71,6 +71,7 @@ public class DAO {
             ps.setInt(3, usuario.getCep());
             ps.setString(4, usuario.getSenha());
             ps.setString(5, adm);
+            ps.setInt(6, usuario.getLocal());
             //Executar o comando
             ps.execute();
         } catch (SQLException erro) {
