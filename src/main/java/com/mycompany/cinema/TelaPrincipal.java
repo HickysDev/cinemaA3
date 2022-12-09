@@ -33,7 +33,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         perfilButton = new javax.swing.JButton();
         adicionarButton = new javax.swing.JButton();
-        cinemasButton = new javax.swing.JButton();
+        todosCinemasButton = new javax.swing.JButton();
         filmesCartazButton = new javax.swing.JButton();
         todosFilmesButton = new javax.swing.JButton();
         sairButton = new javax.swing.JButton();
@@ -74,10 +74,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        cinemasButton.setText("Cinemas");
-        cinemasButton.addActionListener(new java.awt.event.ActionListener() {
+        todosCinemasButton.setText("Todos Cinemas");
+        todosCinemasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cinemasButtonActionPerformed(evt);
+                todosCinemasButtonActionPerformed(evt);
             }
         });
 
@@ -202,18 +202,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(filmesCartazButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cinemasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(adicionarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cinemasButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(AddCinemaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sairButton)
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addComponent(todosCinemasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sairButton)
+                    .addComponent(AddCinemaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(adicionarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -222,7 +224,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void exibirBotao(boolean permissao) {
         System.out.println("permissao: " + permissao);
         if (permissao == true) {
-            cinemasButton.setVisible(true);
+            todosCinemasButton.setVisible(true);
             adicionarButton.setVisible(true);
             System.out.println("deu certo");
         } else {
@@ -263,9 +265,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_adicionarButtonActionPerformed
 
-    private void cinemasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinemasButtonActionPerformed
+    private void todosCinemasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosCinemasButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cinemasButtonActionPerformed
+    }//GEN-LAST:event_todosCinemasButtonActionPerformed
 
     private void todosFilmesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosFilmesButtonActionPerformed
 
@@ -468,7 +470,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCinemaButton;
     private javax.swing.JButton adicionarButton;
-    private javax.swing.JButton cinemasButton;
+    private javax.swing.JButton cinemasButton1;
     private javax.swing.JButton filmesCartazButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
