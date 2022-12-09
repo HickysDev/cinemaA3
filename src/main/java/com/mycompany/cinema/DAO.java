@@ -48,7 +48,7 @@ public class DAO {
             return rs;
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "DAO autenticação :" + erro);
+            JOptionPane.showMessageDialog(null, "DAO :" + erro);
             return null;
         }
 
@@ -96,7 +96,7 @@ public class DAO {
             }
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "DAO verificação administrador :" + erro);
+            JOptionPane.showMessageDialog(null, "DAO :" + erro);
 
         }
         System.out.println("DAO: " + adminisradorValido);
@@ -265,12 +265,13 @@ public class DAO {
                 usuario.setCep(rs.getInt("cep"));
                 usuario.setNomeUsuario(rs.getString("nomeUsuario"));
                 usuario.setEmail(rs.getString("email"));
+                usuario.setSenha(rs.getString("senha"));
                 usuario.setId(rs.getInt("id"));
                 usuario.setAdministrador(rs.getString("administrador"));
             }
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "DAO armazernar dados :" + erro);
+            JOptionPane.showMessageDialog(null, "DAO :" + erro);
 
         }
 
