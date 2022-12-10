@@ -174,7 +174,6 @@ public class CadastroTela extends javax.swing.JFrame {
             cep = Integer.parseInt(cepTextField.getText());
             nomeUsuario = nomeUsuarioTextField.getText();
             String adm = "0";
-            
 
             // atribui os 
             usuarioLogin.setEmail(email);
@@ -182,7 +181,6 @@ public class CadastroTela extends javax.swing.JFrame {
             usuarioLogin.setCep(cep);
             usuarioLogin.setNomeUsuario(nomeUsuario);
             usuarioLogin.setAdministrador(adm);
-            
 
             DAO autenticacao = new DAO();
 
@@ -194,17 +192,44 @@ public class CadastroTela extends javax.swing.JFrame {
 
             } else {
 
-                if (isBetween(cep, 1000000, 1099999)) {
+                if (isBetween(cep, 1,999999)) {
+                    JOptionPane.showMessageDialog(null, "Cep Invalido");
+                    return;
+
+                } // Zona Sul
+                else if (isBetween(cep, 4000000, 4999999)) {
                     local = 1;
                     usuarioLogin.setLocal(local);
                     System.out.println(local);
+                } // Zona norte
+                else if (isBetween(cep, 2000000, 2999999)) {
+                    local = 2;
+                    usuarioLogin.setLocal(local);
+                    System.out.println(local);
 
-                } else if (isBetween(cep, 2000000, 2072002)) {
-                    System.out.println("testing case 1 to 5");
+                    // Zona Leste
+                } else if (isBetween(cep, 3000000, 3999999)) {
+                    local = 3;
+                    usuarioLogin.setLocal(local);
+                    System.out.println(local);
+                } else if (isBetween(cep, 8000000, 8499999)) {
+                    local = 3;
+                    usuarioLogin.setLocal(local);
+                    System.out.println(local);
+                } //Zona Oeste
+                else if (isBetween(cep, 5000000, 5899999)) {
+                    local = 4;
+                    usuarioLogin.setLocal(local);
+                    System.out.println(local);
+                } // Zona Central
+                else if (isBetween(cep, 1000000, 1599999)) {
+                    local = 5;
+                    usuarioLogin.setLocal(local);
+                    System.out.println(local);
 
                 } else {
-                    System.out.println("deu merda");
-                    
+                    System.out.println("Algo deu errado");
+
                 }
                 autenticacao.CadastrarUsuario(usuarioLogin);
                 autenticacao.armazenarDados(usuarioLogin);
@@ -216,7 +241,7 @@ public class CadastroTela extends javax.swing.JFrame {
             }
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "LoginTela: " + erro);
+            JOptionPane.showMessageDialog(null, "Cadastro Tela: " + erro);
         };
 
     }

@@ -4,6 +4,7 @@
  */
 package com.mycompany.cinema;
 
+import static com.mycompany.cinema.CadastroTela.isBetween;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 public class EditarPefilTela extends javax.swing.JFrame {
 
     String emailCache;
+    Integer local;
 
     /**
      * Creates new form EditarPefilTela
@@ -83,20 +85,18 @@ public class EditarPefilTela extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nomeUsuarioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeUsuarioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(alterarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cepTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(alterarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(senhaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                        .addComponent(cepTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7)
+                .addComponent(senhaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(212, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,6 +175,46 @@ public class EditarPefilTela extends javax.swing.JFrame {
         if (nomeUsuario.isBlank() || cep == null || senha.isBlank() || email.isBlank()) {
             JOptionPane.showMessageDialog(null, "Campos inválidos");
         } else {
+            
+            if (isBetween(cep, 1, 999999)) {
+                JOptionPane.showMessageDialog(null, "Cep Invalido");
+                return;
+
+            } // Zona Sul
+            else if (isBetween(cep, 4000000, 4999999)) {
+                local = 1;
+                usu.setLocal(local);
+                System.out.println(local);
+            } // Zona norte
+            else if (isBetween(cep, 2000000, 2999999)) {
+                local = 2;
+                usu.setLocal(local);
+                System.out.println(local);
+
+                // Zona Leste
+            } else if (isBetween(cep, 3000000, 3999999)) {
+                local = 3;
+                usu.setLocal(local);
+                System.out.println(local);
+            } else if (isBetween(cep, 8000000, 8499999)) {
+                local = 3;
+                usu.setLocal(local);
+                System.out.println(local);
+            } //Zona Oeste
+            else if (isBetween(cep, 5000000, 5899999)) {
+                local = 4;
+                usu.setLocal(local);
+                System.out.println(local);
+            } // Zona Central
+            else if (isBetween(cep, 1000000, 1599999)) {
+                local = 5;
+                usu.setLocal(local);
+                System.out.println(local);
+
+            } else {
+                System.out.println("Algo deu errado");
+
+            }
             usu.setEmail(email);
             usu.setNomeUsuario(nomeUsuario);
             usu.setCep(cep);
@@ -182,6 +222,7 @@ public class EditarPefilTela extends javax.swing.JFrame {
             usu.setId(id);
             dao.alterarUsuario(usu);
         }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

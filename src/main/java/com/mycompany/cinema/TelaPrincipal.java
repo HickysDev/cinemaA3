@@ -264,7 +264,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         EditarPefilTela editarPerfil = new EditarPefilTela();
 
         System.out.println("email cache tela:" + emailCache);
-
+        usuario.setEmail(emailCache);
         dao.armazenarDados(usuario);
 
         perfil.emailCache = emailCache;
@@ -272,6 +272,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         perfil.exibirDados();
 
         System.out.println("email cache tela perfil:" + perfil.emailCache);
+        System.out.println("local do usuario" + usuario.getLocal());
 
         perfil.setVisible(true);
         dispose();

@@ -286,7 +286,7 @@ public class DAO {
         conn = new ConnectionFactory().obtemConexao();
 
         try {
-            String sql = "Select id,cep,nomeUsuario,email,administrador,local from tb_usuario where email = ?";
+            String sql = "Select id,cep,nomeUsuario,email,administrador,local,senha from tb_usuario where email = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, usuario.getEmail());
@@ -301,6 +301,7 @@ public class DAO {
                 usuario.setId(rs.getInt("id"));
                 usuario.setAdministrador(rs.getString("administrador"));
                 usuario.setLocal(rs.getInt("local"));
+                usuario.setSenha(rs.getString("senha"));
             }
 
         } catch (SQLException erro) {
@@ -479,7 +480,7 @@ public class DAO {
     }
 
     public void alterarUsuario(Usuario usu) {
-        String sql = "UPDATE tb_usuario SET nomeUsuario = ? ,cep = ?, email = ?, senha = ?  WHERE id = ?";
+        String sql = "UPDATE tb_usuario SET nomeUsuario = ? ,cep = ?, email = ?, senha = ?, local = ?  WHERE id = ?";
 
         conn = new ConnectionFactory().obtemConexao();
 
@@ -490,7 +491,8 @@ public class DAO {
             pstm.setInt(2, usu.getCep());
             pstm.setString(4, usu.getSenha());
             pstm.setString(3, usu.getEmail());
-            pstm.setInt(5, usu.getId());
+            pstm.setInt(5, usu.getLocal());
+            pstm.setInt(6, usu.getId());
 
             pstm.execute();
             pstm.close();
