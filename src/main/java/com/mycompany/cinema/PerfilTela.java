@@ -43,6 +43,7 @@ public class PerfilTela extends javax.swing.JFrame {
         editarButton = new javax.swing.JButton();
         cepLabel = new javax.swing.JLabel();
         idLabel = new javax.swing.JLabel();
+        VoltarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +63,13 @@ public class PerfilTela extends javax.swing.JFrame {
 
         idLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("ID:"));
 
+        VoltarButton.setText("Voltar");
+        VoltarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VoltarButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,15 +81,20 @@ public class PerfilTela extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nomeUsuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(147, 147, 147)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nomeUsuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(75, 75, 75)
+                        .addComponent(cepLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(75, 75, 75)
-                .addComponent(cepLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(VoltarButton)))
                 .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -100,7 +113,9 @@ public class PerfilTela extends javax.swing.JFrame {
                 .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addComponent(editarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addComponent(VoltarButton)
+                .addContainerGap())
         );
 
         pack();
@@ -118,13 +133,22 @@ public class PerfilTela extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_editarButtonActionPerformed
 
+    private void VoltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarButtonActionPerformed
+        TelaPrincipal telaprincipal = new TelaPrincipal();
+
+        telaprincipal.emailCache = emailCache;
+        telaprincipal.exibirBotao();
+        telaprincipal.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_VoltarButtonActionPerformed
+
     public void exibirDados() {
         Usuario usuario = new Usuario();
         DAO dao = new DAO();
         usuario.setEmail(emailCache);
         System.out.println("id tela perfil :" + usuario.getId());
         dao.armazenarDados(usuario);
-        cepLabel.setText(String.valueOf("0"+usuario.getCep()));
+        cepLabel.setText(String.valueOf("0" + usuario.getCep()));
         nomeUsuarioLabel.setText(usuario.getNomeUsuario());
         emailLabel.setText(usuario.getEmail());
         idLabel.setText(String.valueOf(usuario.getId()));
@@ -167,6 +191,7 @@ public class PerfilTela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton VoltarButton;
     private javax.swing.JLabel cepLabel;
     private javax.swing.JButton editarButton;
     private javax.swing.JLabel emailLabel;

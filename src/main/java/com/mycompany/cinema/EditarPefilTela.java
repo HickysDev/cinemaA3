@@ -38,6 +38,7 @@ public class EditarPefilTela extends javax.swing.JFrame {
         nomeUsuarioTextField = new javax.swing.JTextField();
         idLabel = new javax.swing.JLabel();
         senhaTextField = new javax.swing.JTextField();
+        VoltarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +58,13 @@ public class EditarPefilTela extends javax.swing.JFrame {
         idLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("ID:"));
 
         senhaTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha:"));
+
+        VoltarButton.setText("Voltar");
+        VoltarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VoltarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,6 +87,10 @@ public class EditarPefilTela extends javax.swing.JFrame {
                             .addComponent(alterarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                             .addComponent(idLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(41, 41, 41))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(VoltarButton)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +108,9 @@ public class EditarPefilTela extends javax.swing.JFrame {
                         .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(7, 7, 7)
                 .addComponent(senhaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addComponent(VoltarButton)
+                .addContainerGap())
         );
 
         pack();
@@ -106,6 +120,14 @@ public class EditarPefilTela extends javax.swing.JFrame {
         // TODO add your handling code here:
         AlterarUsuario();
     }//GEN-LAST:event_alterarButtonActionPerformed
+
+    private void VoltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarButtonActionPerformed
+        PerfilTela perfiltela = new PerfilTela();
+        perfiltela.emailCache = emailCache;
+        perfiltela.exibirDados();
+        perfiltela.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_VoltarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,6 +248,7 @@ public class EditarPefilTela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton VoltarButton;
     private javax.swing.JButton alterarButton;
     private javax.swing.JTextField cepTextField;
     private javax.swing.JTextField emailTextField;

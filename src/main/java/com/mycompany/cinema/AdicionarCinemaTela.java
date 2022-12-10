@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdicionarCinemaTela extends javax.swing.JFrame {
 
+    public String emailCache;
+
     /**
      * Creates new form AdicionarCinema
      */
@@ -40,6 +42,7 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
         idTextField = new javax.swing.JTextField();
         alterarButton = new javax.swing.JButton();
         excluirButton = new javax.swing.JButton();
+        VoltarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +86,13 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
             }
         });
 
+        VoltarButton.setText("Voltar");
+        VoltarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VoltarButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,6 +110,10 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(VoltarButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +133,9 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
                         .addComponent(alterarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(excluirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addComponent(VoltarButton)
+                .addContainerGap())
         );
 
         pack();
@@ -129,15 +145,15 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nomeCinema;
         Integer localizacao;
-        
+
         nomeCinema = nomeCinemaTextField.getText();
         localizacao = Integer.parseInt(localizacaoTextField.getText());
-        
+
         if (localizacao < 50) {
             Cinema cine = new Cinema();
             cine.setNomeCinema(nomeCinema);
             cine.setLocalizacao(localizacao);
-            
+
             Administrador adm = new Administrador();
             adm.adiconarCinema(cine);
         } else {
@@ -154,10 +170,19 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
 
     private void excluirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirButtonActionPerformed
         // TODO add your handling code here:
-        
+
         ExcluirCine();
         listarCinemasTabela();
     }//GEN-LAST:event_excluirButtonActionPerformed
+
+    private void VoltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarButtonActionPerformed
+        TelaPrincipal telaprincipal = new TelaPrincipal();
+
+        telaprincipal.emailCache = emailCache;
+        telaprincipal.exibirBotao();
+        telaprincipal.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_VoltarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,6 +221,7 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton VoltarButton;
     private javax.swing.JButton alterarButton;
     private javax.swing.JButton cadastrarCinemaJButton;
     private javax.swing.JTable cinemaTable;
@@ -207,74 +233,74 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void listarCinemasTabela() {
-        
+
         cinemaTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
-            
+
             System.out.println(cinemaTable.getValueAt(cinemaTable.getSelectedRow(), 0).toString());
-            
+
             String id = cinemaTable.getValueAt(cinemaTable.getSelectedRow(), 0).toString();
-            
+
             if (id.equals("1")) {
                 TelaPrincipal tela = new TelaPrincipal();
-                
+
                 tela.setVisible(true);
-                
+
                 dispose();
-                
+
             }
-            
+
         });
-        
+
         try {
             DAO dao = new DAO();
             DefaultTableModel model = (DefaultTableModel) cinemaTable.getModel();
             model.setNumRows(0);
-            
+
             ArrayList<Cinema> listaCine = dao.TableCinema();
-            
+
             for (int num = 0; num < listaCine.size(); num++) {
-                
+
                 model.addRow(new Object[]{
                     listaCine.get(num).getIdCine(),
                     listaCine.get(num).getNomeCinema(),
                     listaCine.get(num).getLocalizacao()
                 });
-                
+
             }
-            
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "erro no listarCinemasTabela" + erro);
         }
-        
+
     }
-    
+
     private void AlterarCine() {
         Integer id;
         String nomeCinema;
         Integer localizacao;
-        
+
         nomeCinema = nomeCinemaTextField.getText();
         localizacao = Integer.parseInt(localizacaoTextField.getText());
         id = Integer.parseInt(idTextField.getText());
-        
+
         Cinema cine = new Cinema();
         cine.setIdCine(id);
         cine.setNomeCinema(nomeCinema);
         cine.setLocalizacao(localizacao);
-        
+
         DAO dao = new DAO();
-        
+
         dao.alterarCinema(cine);
         ;
     }
-    
-    private void ExcluirCine(){
-    Integer id;
+
+    private void ExcluirCine() {
+        Integer id;
         id = Integer.parseInt(idTextField.getText());
-        
+
         Cinema cine = new Cinema();
         cine.setIdCine(id);
-        
+
         DAO dao = new DAO();
         dao.excluirCinemaExiste(cine);
         dao.excluirCinema(cine);

@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class CinemaTela extends javax.swing.JFrame {
     
     public int idCache;
+    public String emailCache;
     
     /**
      * Creates new form CinemaTela
@@ -141,9 +142,11 @@ public class CinemaTela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VoltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarButtonActionPerformed
-        TelaPrincipal tela = new TelaPrincipal();
-
-        tela.setVisible(true);
+        TelaPrincipal telaprincipal = new TelaPrincipal();
+        
+        telaprincipal.emailCache = emailCache;
+        telaprincipal.exibirBotao();
+        telaprincipal.setVisible(true);
         dispose();
     }//GEN-LAST:event_VoltarButtonActionPerformed
 

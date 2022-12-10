@@ -127,7 +127,7 @@ public class LoginTela extends javax.swing.JFrame {
             senha = new String(senhaPasswordField.getPassword());
 
             
-            PerfilTela perfiltela = new PerfilTela();
+            
             Usuario usuarioLogin = new Usuario();
             TelaPrincipal telaprincipal = new TelaPrincipal();
             usuarioLogin.setEmail(email);
@@ -139,7 +139,7 @@ public class LoginTela extends javax.swing.JFrame {
             if (rsUsuarioValido.next()) {
                 autenticacao.armazenarDados(usuarioLogin);
                 telaprincipal.emailCache = usuarioLogin.getEmail();
-                telaprincipal.exibirBotao(autenticacao.verificacaoAdmin(usuarioLogin));
+                telaprincipal.exibirBotao();
                 telaprincipal.setVisible(true);
 
                 dispose();

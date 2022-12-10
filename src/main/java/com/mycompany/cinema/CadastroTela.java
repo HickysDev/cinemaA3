@@ -40,6 +40,7 @@ public class CadastroTela extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         registrarJButton = new javax.swing.JButton();
         senhaTextField = new javax.swing.JPasswordField();
+        voltarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +64,13 @@ public class CadastroTela extends javax.swing.JFrame {
             }
         });
 
+        voltarButton.setText("Voltar");
+        voltarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,14 +86,16 @@ public class CadastroTela extends javax.swing.JFrame {
                     .addComponent(cepTextField)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(nomeUsuarioTextField)
-                            .addComponent(registrarJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
-                            .addComponent(emailTextField))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(voltarButton)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
+                                .addComponent(nomeUsuarioTextField)
+                                .addComponent(registrarJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                                .addComponent(emailTextField)))))
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
@@ -111,7 +121,9 @@ public class CadastroTela extends javax.swing.JFrame {
                 .addComponent(senhaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(registrarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(voltarButton)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,6 +134,13 @@ public class CadastroTela extends javax.swing.JFrame {
 
         Cadastro();
     }//GEN-LAST:event_registrarJButtonActionPerformed
+
+    private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
+        LoginTela logintela = new LoginTela();
+        
+        logintela.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_voltarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,7 +253,6 @@ public class CadastroTela extends javax.swing.JFrame {
                 autenticacao.CadastrarUsuario(usuarioLogin);
                 autenticacao.armazenarDados(usuarioLogin);
                 telaprincipal.emailCache = usuarioLogin.getEmail();
-                telaprincipal.exibirBotao(autenticacao.verificacaoAdmin(usuarioLogin));
                 telaprincipal.setVisible(true);
                 dispose();
 
@@ -256,5 +274,6 @@ public class CadastroTela extends javax.swing.JFrame {
     private javax.swing.JTextField nomeUsuarioTextField;
     private javax.swing.JButton registrarJButton;
     private javax.swing.JPasswordField senhaTextField;
+    private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,7 +21,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Hickys
  */
 public class AdicionarFilmeTela extends javax.swing.JFrame {
-
+    
+    public String emailCache;
+    
     /**
      * Creates new form AdicionarFilmeTela
      */
@@ -57,6 +59,7 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         alterarJButton = new javax.swing.JButton();
         idTextField = new javax.swing.JTextField();
         excluirButton = new javax.swing.JButton();
+        VoltarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,6 +135,13 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
             }
         });
 
+        VoltarButton.setText("Voltar");
+        VoltarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VoltarButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,11 +167,11 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(idFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
-                                .addComponent(nomeFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(nomeFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(idFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(idCinemaTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,6 +198,10 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(233, 233, 233))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(VoltarButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +240,9 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(VoltarButton)
+                .addContainerGap())
         );
 
         pack();
@@ -293,6 +309,16 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         listarFilmesTabela();
     }//GEN-LAST:event_excluirButtonActionPerformed
 
+    private void VoltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarButtonActionPerformed
+        TelaPrincipal telaprincipal = new TelaPrincipal();
+        
+        
+        telaprincipal.emailCache = emailCache;
+        telaprincipal.exibirBotao();
+        telaprincipal.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_VoltarButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -329,6 +355,7 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton VoltarButton;
     private javax.swing.JButton alterarJButton;
     private javax.swing.JButton cadastrarFilmeButton;
     private javax.swing.JTable cinemaTable;
@@ -355,7 +382,7 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
             model.setNumRows(0);
 
             ArrayList<Filme> listaFilme = dao.TableFilme();
-            
+
             for (int num = 0; num < listaFilme.size(); num++) {
                 model.addRow(new Object[]{
                     listaFilme.get(num).getId(),
@@ -370,7 +397,7 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         }
 
     }
-    
+
     private static MouseListener getMouseListener() {
         return new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -378,28 +405,26 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
             }
         };
     }
-    
+
     private void listarCinemasTabela() {
-        
-        
+
         cinemaTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
-            
+
             System.out.println(cinemaTable.getValueAt(cinemaTable.getSelectedRow(), 0).toString());
-            
+
             String id = cinemaTable.getValueAt(cinemaTable.getSelectedRow(), 0).toString();
-                        
-            if(id.equals("1")){
+
+            if (id.equals("1")) {
                 TelaPrincipal tela = new TelaPrincipal();
-                
+
                 tela.setVisible(true);
-                
+
                 dispose();
 
             }
-            
+
         });
-        
-        
+
         try {
             DAO dao = new DAO();
             DefaultTableModel model = (DefaultTableModel) cinemaTable.getModel();
@@ -408,7 +433,7 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
             ArrayList<Cinema> listaCine = dao.TableCinema();
 
             for (int num = 0; num < listaCine.size(); num++) {
-                
+
                 model.addRow(new Object[]{
                     listaCine.get(num).getIdCine(),
                     listaCine.get(num).getNomeCinema(),
@@ -422,42 +447,42 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         }
 
     }
-    
-       private void AlterarFilme() {
+
+    private void AlterarFilme() {
         Integer id;
         String nomeFilme;
         Integer cartaz;
         String sinopse;
         String dataLancamento;
-        
+
         id = Integer.parseInt(idTextField.getText());
         nomeFilme = nomeFilmeTextField.getText();
         cartaz = Integer.parseInt(emCartazTextField.getText());
         sinopse = sinopseTextField.getText();
         dataLancamento = dataLancamentoTextField.getText();
-        
-        Filme filme = new Filme();
-            filme.setId(id);
-            filme.setNomeFilme(nomeFilme);
-            filme.setCartaz(cartaz);
-            filme.setSinopse(sinopse);
-            filme.setDataLancamento(dataLancamento);
-            
-            DAO dao = new DAO();
-            
-            dao.alterarFilme(filme);
-    }
-       
-       private void ExcluirFilme(){
-        Integer id;
-        id = Integer.parseInt(idTextField.getText());
-        
+
         Filme filme = new Filme();
         filme.setId(id);
-        
+        filme.setNomeFilme(nomeFilme);
+        filme.setCartaz(cartaz);
+        filme.setSinopse(sinopse);
+        filme.setDataLancamento(dataLancamento);
+
+        DAO dao = new DAO();
+
+        dao.alterarFilme(filme);
+    }
+
+    private void ExcluirFilme() {
+        Integer id;
+        id = Integer.parseInt(idTextField.getText());
+
+        Filme filme = new Filme();
+        filme.setId(id);
+
         DAO dao = new DAO();
         dao.excluirFilmeExiste(filme);
         dao.excluirFilme(filme);
-        
-       }
+
+    }
 }

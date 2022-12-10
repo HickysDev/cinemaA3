@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class FilmeTela extends javax.swing.JFrame {
     public int idCache;
+    public String emailCache;
     
 
     public FilmeTela() {
@@ -142,9 +143,12 @@ public class FilmeTela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VoltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarButtonActionPerformed
-        TelaPrincipal tela = new TelaPrincipal();
+        TelaPrincipal telaprincipal = new TelaPrincipal();
         
-        tela.setVisible(true);
+        
+        telaprincipal.emailCache = emailCache;
+        telaprincipal.exibirBotao();
+        telaprincipal.setVisible(true);
         dispose();
     }//GEN-LAST:event_VoltarButtonActionPerformed
         
