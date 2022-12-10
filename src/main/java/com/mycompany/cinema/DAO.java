@@ -558,7 +558,6 @@ public class DAO {
         conn = new ConnectionFactory().obtemConexao();
         try {
             pstm = conn.prepareStatement(sql);
-            System.out.println("filmeTelaTable no DAO: " + idCache);
             pstm.setInt(1, idCache);
             rs = pstm.executeQuery();
 
@@ -583,7 +582,6 @@ public class DAO {
         conn = new ConnectionFactory().obtemConexao();
         try {
             pstm = conn.prepareStatement(sql);
-            System.out.println("cinemaTelaTable no DAO: " + idCache);
             pstm.setInt(1, idCache);
             rs = pstm.executeQuery();
 
