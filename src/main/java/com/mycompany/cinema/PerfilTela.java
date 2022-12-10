@@ -4,6 +4,8 @@
  */
 package com.mycompany.cinema;
 
+import java.awt.Cursor;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,90 +40,115 @@ public class PerfilTela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        cepLabel = new javax.swing.JLabel();
         nomeUsuarioLabel = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
-        editarButton = new javax.swing.JButton();
-        cepLabel = new javax.swing.JLabel();
         idLabel = new javax.swing.JLabel();
-        VoltarButton = new javax.swing.JButton();
+        Cabeçalho = new javax.swing.JLabel();
+        Voltar = new javax.swing.JLabel();
+        editarBtn = new javax.swing.JLabel();
+        Fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nomeUsuarioLabel.setToolTipText("");
-        nomeUsuarioLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
-
-        emailLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Email"));
-
-        editarButton.setText("Editar");
-        editarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarButtonActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cepLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Cep:"));
+        cepLabel.setOpaque(true);
+        jPanel1.add(cepLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 160, 60));
+
+        nomeUsuarioLabel.setToolTipText("");
+        nomeUsuarioLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
+        nomeUsuarioLabel.setOpaque(true);
+        jPanel1.add(nomeUsuarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 330, 60));
+
+        emailLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Email"));
+        emailLabel.setOpaque(true);
+        jPanel1.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 330, 60));
 
         idLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("ID:"));
+        idLabel.setOpaque(true);
+        jPanel1.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 160, 60));
 
-        VoltarButton.setText("Voltar");
-        VoltarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VoltarButtonActionPerformed(evt);
+        Cabeçalho.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        Cabeçalho.setForeground(new java.awt.Color(255, 255, 255));
+        Cabeçalho.setText("Perfil");
+        jPanel1.add(Cabeçalho, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
+
+        Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/voltarTelas.png"))); // NOI18N
+        Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VoltarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                VoltarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                VoltarMouseExited(evt);
             }
         });
+        jPanel1.add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, -1, -1));
+
+        editarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editarPerfil.png"))); // NOI18N
+        editarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editarBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editarBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editarBtnMouseExited(evt);
+            }
+        });
+        jPanel1.add(editarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
+
+        Fundo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fundoCinzaDark.png"))); // NOI18N
+        jPanel1.add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 380));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(editarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(237, 237, 237))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(147, 147, 147)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nomeUsuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(75, 75, 75)
-                        .addComponent(cepLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(VoltarButton)))
-                .addContainerGap(190, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nomeUsuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cepLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
-                .addComponent(editarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addComponent(VoltarButton)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonActionPerformed
+    private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
+        // TODO add your handling code here:
+        TelaPrincipal telaprincipal = new TelaPrincipal();
+
+        telaprincipal.emailCache = emailCache;
+        telaprincipal.exibirBotao();
+        telaprincipal.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_VoltarMouseClicked
+
+    private void VoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseEntered
+        // TODO add your handling code here:
+        ImageIcon btnVoltar = new ImageIcon(getClass().getResource("/voltarTelas1.png"));
+        Voltar.setIcon(btnVoltar);
+        Cursor crs = new Cursor(Cursor.HAND_CURSOR);
+        Voltar.setCursor(crs);
+        
+    }//GEN-LAST:event_VoltarMouseEntered
+
+    private void VoltarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseExited
+        // TODO add your handling code here:
+        ImageIcon btnVoltar = new ImageIcon(getClass().getResource("/voltarTelas.png"));
+        Voltar.setIcon(btnVoltar);
+    }//GEN-LAST:event_VoltarMouseExited
+
+    private void editarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarBtnMouseClicked
         // TODO add your handling code here:
         EditarPefilTela editar = new EditarPefilTela();
         editar.emailCache = emailCache;
@@ -131,16 +158,21 @@ public class PerfilTela extends javax.swing.JFrame {
 
         editar.setVisible(true);
         dispose();
-    }//GEN-LAST:event_editarButtonActionPerformed
+    }//GEN-LAST:event_editarBtnMouseClicked
 
-    private void VoltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarButtonActionPerformed
-        TelaPrincipal telaprincipal = new TelaPrincipal();
+    private void editarBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarBtnMouseEntered
+        // TODO add your handling code here:
+        ImageIcon btnEditar = new ImageIcon(getClass().getResource("/editarPerfil1.png"));
+        editarBtn.setIcon(btnEditar);
+        Cursor crs = new Cursor(Cursor.HAND_CURSOR);
+        editarBtn.setCursor(crs);
+    }//GEN-LAST:event_editarBtnMouseEntered
 
-        telaprincipal.emailCache = emailCache;
-        telaprincipal.exibirBotao();
-        telaprincipal.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_VoltarButtonActionPerformed
+    private void editarBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarBtnMouseExited
+        // TODO add your handling code here:
+        ImageIcon btnEditar = new ImageIcon(getClass().getResource("/editarPerfil.png"));
+        editarBtn.setIcon(btnEditar);
+    }//GEN-LAST:event_editarBtnMouseExited
 
     public void exibirDados() {
         Usuario usuario = new Usuario();
@@ -191,11 +223,14 @@ public class PerfilTela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton VoltarButton;
+    private javax.swing.JLabel Cabeçalho;
+    private javax.swing.JLabel Fundo;
+    private javax.swing.JLabel Voltar;
     private javax.swing.JLabel cepLabel;
-    private javax.swing.JButton editarButton;
+    private javax.swing.JLabel editarBtn;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel idLabel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nomeUsuarioLabel;
     // End of variables declaration//GEN-END:variables
 }

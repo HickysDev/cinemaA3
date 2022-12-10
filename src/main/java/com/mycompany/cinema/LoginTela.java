@@ -93,7 +93,8 @@ public class LoginTela extends javax.swing.JFrame {
         erroTexto1.setForeground(new java.awt.Color(255, 51, 51));
         jPanel1.add(erroTexto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 190, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fundoCinza.jpg"))); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fundoCinzaDark.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 406));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

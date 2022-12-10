@@ -36,10 +36,6 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cadastrarCinemaJButton = new javax.swing.JButton();
-        alterarButton = new javax.swing.JButton();
-        excluirButton = new javax.swing.JButton();
-        VoltarButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         cinemaTable = new javax.swing.JTable();
@@ -50,37 +46,10 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
         Voltar = new javax.swing.JLabel();
         excluirBtnCn = new javax.swing.JLabel();
         alterarBtnCn = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         Fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        cadastrarCinemaJButton.setText("Cadastrar Cinema");
-        cadastrarCinemaJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarCinemaJButtonActionPerformed(evt);
-            }
-        });
-
-        alterarButton.setText("Alterar");
-        alterarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alterarButtonActionPerformed(evt);
-            }
-        });
-
-        excluirButton.setText("Excluir");
-        excluirButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                excluirButtonActionPerformed(evt);
-            }
-        });
-
-        VoltarButton.setText("Voltar");
-        VoltarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VoltarButtonActionPerformed(evt);
-            }
-        });
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -180,6 +149,10 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
         });
         jPanel1.add(alterarBtnCn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
 
+        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel1.setText("Zona Sul - 1        Zona Norte - 2        Zona Leste - 3         Zona Oeste - 4 ");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, 440, -1));
+
         Fundo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fundoCinzaDark.png"))); // NOI18N
         jPanel1.add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 680));
@@ -188,83 +161,15 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(excluirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(alterarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cadastrarCinemaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(VoltarButton))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 490, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(excluirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(alterarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cadastrarCinemaJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addComponent(VoltarButton)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cadastrarCinemaJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarCinemaJButtonActionPerformed
-        // TODO add your handling code here:
-        String nomeCinema;
-        Integer localizacao;
-
-        nomeCinema = nomeCinemaTextField.getText();
-        localizacao = Integer.parseInt(localizacaoTextField.getText());
-
-        if (localizacao < 50) {
-            Cinema cine = new Cinema();
-            cine.setNomeCinema(nomeCinema);
-            cine.setLocalizacao(localizacao);
-
-            Administrador adm = new Administrador();
-            adm.adiconarCinema(cine);
-        } else {
-            JOptionPane.showMessageDialog(null, "Algo deu errado");
-        }
-
-    }//GEN-LAST:event_cadastrarCinemaJButtonActionPerformed
-
-    private void alterarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarButtonActionPerformed
-        // TODO add your handling code here:
-        AlterarCine();
-        listarCinemasTabela();
-    }//GEN-LAST:event_alterarButtonActionPerformed
-
-    private void excluirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirButtonActionPerformed
-        // TODO add your handling code here:
-
-        ExcluirCine();
-        listarCinemasTabela();
-    }//GEN-LAST:event_excluirButtonActionPerformed
-
-    private void VoltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarButtonActionPerformed
-        TelaPrincipal telaprincipal = new TelaPrincipal();
-
-        telaprincipal.emailCache = emailCache;
-        telaprincipal.exibirBotao();
-        telaprincipal.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_VoltarButtonActionPerformed
 
     private void localizacaoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localizacaoTextFieldActionPerformed
         // TODO add your handling code here:
@@ -415,15 +320,12 @@ public class AdicionarCinemaTela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fundo;
     private javax.swing.JLabel Voltar;
-    private javax.swing.JButton VoltarButton;
     private javax.swing.JLabel alterarBtnCn;
-    private javax.swing.JButton alterarButton;
     private javax.swing.JLabel cadastrarBtnCn;
-    private javax.swing.JButton cadastrarCinemaJButton;
     private javax.swing.JTable cinemaTable;
     private javax.swing.JLabel excluirBtnCn;
-    private javax.swing.JButton excluirButton;
     private javax.swing.JTextField idTextField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField localizacaoTextField;

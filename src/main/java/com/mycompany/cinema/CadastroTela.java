@@ -4,8 +4,10 @@
  */
 package com.mycompany.cinema;
 
+import java.awt.Cursor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class CadastroTela extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form CadastroTela
      */
@@ -30,117 +33,181 @@ public class CadastroTela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nomeUsuarioTextField = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cepTextField = new javax.swing.JTextField();
+        nomeUsuarioTextField = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         emailTextField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        registrarJButton = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        cepTextField = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         senhaTextField = new javax.swing.JPasswordField();
-        voltarButton = new javax.swing.JButton();
+        Voltar = new javax.swing.JLabel();
+        cadastrarBtnTela = new javax.swing.JLabel();
+        Fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nomeUsuarioTextField.setToolTipText("");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Criar Conta");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
 
-        jLabel2.setText("Nome de usuário");
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Nome de usuário:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        jLabel3.setText("E-mail");
-
-        jLabel4.setText("CEP");
-
-        jLabel5.setText("Senha");
-
-        registrarJButton.setText("Registrar");
-        registrarJButton.addActionListener(new java.awt.event.ActionListener() {
+        nomeUsuarioTextField.setToolTipText("");
+        nomeUsuarioTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarJButtonActionPerformed(evt);
+                nomeUsuarioTextFieldActionPerformed(evt);
             }
         });
+        jPanel1.add(nomeUsuarioTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 330, 34));
 
-        voltarButton.setText("Voltar");
-        voltarButton.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("E-mail:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        emailTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                voltarButtonActionPerformed(evt);
+                emailTextFieldActionPerformed(evt);
             }
         });
+        jPanel1.add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 330, 34));
+
+        jLabel9.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("CEP:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        cepTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cepTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cepTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 330, 34));
+
+        jLabel10.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Senha:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+
+        senhaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                senhaTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(senhaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 330, 47));
+
+        Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/voltarTelas.png"))); // NOI18N
+        Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VoltarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                VoltarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                VoltarMouseExited(evt);
+            }
+        });
+        jPanel1.add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, -1, -1));
+
+        cadastrarBtnTela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cadastrarFilm.png"))); // NOI18N
+        cadastrarBtnTela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cadastrarBtnTelaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cadastrarBtnTelaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cadastrarBtnTelaMouseExited(evt);
+            }
+        });
+        jPanel1.add(cadastrarBtnTela, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, -1, -1));
+
+        Fundo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fundoCinzaDark.png"))); // NOI18N
+        jPanel1.add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 380));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(161, 161, 161)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(senhaTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cepTextField)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(voltarButton)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)
-                                .addComponent(nomeUsuarioTextField)
-                                .addComponent(registrarJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
-                                .addComponent(emailTextField)))))
-                .addGap(42, 42, 42))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeUsuarioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cepTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(senhaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(registrarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(voltarButton)
-                .addContainerGap(16, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public int local;
-    private void registrarJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarJButtonActionPerformed
+    private void nomeUsuarioTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeUsuarioTextFieldActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_nomeUsuarioTextFieldActionPerformed
 
-        Cadastro();
-    }//GEN-LAST:event_registrarJButtonActionPerformed
+    private void cepTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cepTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cepTextFieldActionPerformed
 
-    private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
+    private void senhaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_senhaTextFieldActionPerformed
+
+    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailTextFieldActionPerformed
+
+    private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
+        // TODO add your handling code here:
         LoginTela logintela = new LoginTela();
         
         logintela.setVisible(true);
         dispose();
-    }//GEN-LAST:event_voltarButtonActionPerformed
+    }//GEN-LAST:event_VoltarMouseClicked
+
+    private void VoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseEntered
+        // TODO add your handling code here:]
+        ImageIcon btnVoltar = new ImageIcon(getClass().getResource("/voltarTelas1.png"));
+        Voltar.setIcon(btnVoltar);
+        Cursor crs = new Cursor(Cursor.HAND_CURSOR);
+        Voltar.setCursor(crs);
+    }//GEN-LAST:event_VoltarMouseEntered
+
+    private void VoltarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseExited
+        // TODO add your handling code here:
+        ImageIcon btnVoltar = new ImageIcon(getClass().getResource("/voltarTelas.png"));
+        Voltar.setIcon(btnVoltar);
+    }//GEN-LAST:event_VoltarMouseExited
+
+    private void cadastrarBtnTelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarBtnTelaMouseClicked
+        // TODO add your handling code here:
+        Cadastro();
+    }//GEN-LAST:event_cadastrarBtnTelaMouseClicked
+
+    private void cadastrarBtnTelaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarBtnTelaMouseEntered
+        // TODO add your handling code here:
+        ImageIcon btnCadastrar = new ImageIcon(getClass().getResource("/cadastrarFilm1.png"));
+        cadastrarBtnTela.setIcon(btnCadastrar);
+        Cursor crs = new Cursor(Cursor.HAND_CURSOR);
+        cadastrarBtnTela.setCursor(crs);
+    }//GEN-LAST:event_cadastrarBtnTelaMouseEntered
+
+    private void cadastrarBtnTelaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarBtnTelaMouseExited
+        // TODO add your handling code here:
+         ImageIcon btnCadastrar = new ImageIcon(getClass().getResource("/cadastrarFilm.png"));
+        cadastrarBtnTela.setIcon(btnCadastrar);
+    }//GEN-LAST:event_cadastrarBtnTelaMouseExited
 
     /**
      * @param args the command line arguments
@@ -264,16 +331,18 @@ public class CadastroTela extends javax.swing.JFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Fundo;
+    private javax.swing.JLabel Voltar;
+    private javax.swing.JLabel cadastrarBtnTela;
     private javax.swing.JTextField cepTextField;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nomeUsuarioTextField;
-    private javax.swing.JButton registrarJButton;
     private javax.swing.JPasswordField senhaTextField;
-    private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }

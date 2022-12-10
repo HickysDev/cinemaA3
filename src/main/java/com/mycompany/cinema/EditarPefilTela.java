@@ -5,6 +5,8 @@
 package com.mycompany.cinema;
 
 import static com.mycompany.cinema.CadastroTela.isBetween;
+import java.awt.Cursor;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,102 +34,166 @@ public class EditarPefilTela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        emailTextField = new javax.swing.JTextField();
-        cepTextField = new javax.swing.JTextField();
-        alterarButton = new javax.swing.JButton();
-        nomeUsuarioTextField = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
         idLabel = new javax.swing.JLabel();
+        nomeUsuarioTextField = new javax.swing.JTextField();
+        cepTextField = new javax.swing.JTextField();
         senhaTextField = new javax.swing.JTextField();
-        VoltarButton = new javax.swing.JButton();
+        emailTextField = new javax.swing.JTextField();
+        Voltar = new javax.swing.JLabel();
+        alterarPerfilBtn = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        Fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        emailTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Email:"));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cepTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("CEP:"));
-
-        alterarButton.setText("Alterar");
-        alterarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alterarButtonActionPerformed(evt);
-            }
-        });
+        idLabel.setForeground(new java.awt.Color(255, 255, 255));
+        idLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("ID:"));
+        idLabel.setOpaque(true);
+        jPanel1.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 160, 52));
 
         nomeUsuarioTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome de Usuário:"));
-
-        idLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("ID:"));
-
-        senhaTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha:"));
-
-        VoltarButton.setText("Voltar");
-        VoltarButton.addActionListener(new java.awt.event.ActionListener() {
+        nomeUsuarioTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VoltarButtonActionPerformed(evt);
+                nomeUsuarioTextFieldActionPerformed(evt);
             }
         });
+        jPanel1.add(nomeUsuarioTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 330, 50));
+
+        cepTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("CEP:"));
+        cepTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cepTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cepTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 154, 62));
+
+        senhaTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha:"));
+        senhaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                senhaTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(senhaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 154, 66));
+
+        emailTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Email:"));
+        emailTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 154, 55));
+
+        Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/voltarTelas.png"))); // NOI18N
+        Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VoltarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                VoltarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                VoltarMouseExited(evt);
+            }
+        });
+        jPanel1.add(Voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, -1, -1));
+
+        alterarPerfilBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alterarFilm.png"))); // NOI18N
+        alterarPerfilBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                alterarPerfilBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                alterarPerfilBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                alterarPerfilBtnMouseExited(evt);
+            }
+        });
+        jPanel1.add(alterarPerfilBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 170, 100, -1));
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Editar Perfil");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, 30));
+
+        Fundo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fundoCinzaDark.png"))); // NOI18N
+        jPanel1.add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 370));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(senhaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cepTextField)
-                                .addComponent(nomeUsuarioTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
-                            .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(101, 101, 101)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(alterarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                            .addComponent(idLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(41, 41, 41))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(VoltarButton)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nomeUsuarioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(alterarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cepTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(7, 7, 7)
-                .addComponent(senhaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
-                .addComponent(VoltarButton)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void alterarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarButtonActionPerformed
+    private void cepTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cepTextFieldActionPerformed
         // TODO add your handling code here:
-        AlterarUsuario();
-    }//GEN-LAST:event_alterarButtonActionPerformed
+    }//GEN-LAST:event_cepTextFieldActionPerformed
 
-    private void VoltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarButtonActionPerformed
+    private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
+        // TODO add your handling code here:
         PerfilTela perfiltela = new PerfilTela();
         perfiltela.emailCache = emailCache;
         perfiltela.exibirDados();
         perfiltela.setVisible(true);
         dispose();
-    }//GEN-LAST:event_VoltarButtonActionPerformed
+    }//GEN-LAST:event_VoltarMouseClicked
+
+    private void VoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseEntered
+        // TODO add your handling code here:
+        ImageIcon btnVoltar = new ImageIcon(getClass().getResource("/voltarTelas1.png"));
+        Voltar.setIcon(btnVoltar);
+        Cursor crs = new Cursor(Cursor.HAND_CURSOR);
+        Voltar.setCursor(crs);
+    }//GEN-LAST:event_VoltarMouseEntered
+
+    private void VoltarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseExited
+        // TODO add your handling code here:
+        ImageIcon btnVoltar = new ImageIcon(getClass().getResource("/voltarTelas.png"));
+        Voltar.setIcon(btnVoltar);
+    }//GEN-LAST:event_VoltarMouseExited
+
+    private void senhaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_senhaTextFieldActionPerformed
+
+    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailTextFieldActionPerformed
+
+    private void nomeUsuarioTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeUsuarioTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeUsuarioTextFieldActionPerformed
+
+    private void alterarPerfilBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alterarPerfilBtnMouseClicked
+        // TODO add your handling code here:
+        AlterarUsuario();
+    }//GEN-LAST:event_alterarPerfilBtnMouseClicked
+
+    private void alterarPerfilBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alterarPerfilBtnMouseEntered
+        // TODO add your handling code here:
+        ImageIcon btnAlterar = new ImageIcon(getClass().getResource("/alterarFilm1.png"));
+        alterarPerfilBtn.setIcon(btnAlterar);
+        Cursor crs = new Cursor(Cursor.HAND_CURSOR);
+        alterarPerfilBtn.setCursor(crs);
+    }//GEN-LAST:event_alterarPerfilBtnMouseEntered
+
+    private void alterarPerfilBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alterarPerfilBtnMouseExited
+        // TODO add your handling code here:
+        ImageIcon btnAlterar = new ImageIcon(getClass().getResource("/alterarFilm.png"));
+        alterarPerfilBtn.setIcon(btnAlterar);
+    }//GEN-LAST:event_alterarPerfilBtnMouseExited
 
     /**
      * @param args the command line arguments
@@ -248,11 +314,14 @@ public class EditarPefilTela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton VoltarButton;
-    private javax.swing.JButton alterarButton;
+    private javax.swing.JLabel Fundo;
+    private javax.swing.JLabel Voltar;
+    private javax.swing.JLabel alterarPerfilBtn;
     private javax.swing.JTextField cepTextField;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel idLabel;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nomeUsuarioTextField;
     private javax.swing.JTextField senhaTextField;
     // End of variables declaration//GEN-END:variables
