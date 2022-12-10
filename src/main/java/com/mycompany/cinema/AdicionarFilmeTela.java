@@ -4,12 +4,14 @@
  */
 package com.mycompany.cinema;
 
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -42,35 +44,61 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        dataLancamentoTextField = new javax.swing.JTextField();
         nomeFilmeTextField = new javax.swing.JTextField();
-        cadastrarFilmeButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        filmeTable = new javax.swing.JTable();
-        idFilmeTextField = new javax.swing.JTextField();
-        idCinemaTextField = new javax.swing.JTextField();
-        designarCinemaButton = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        cinemaTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         emCartazTextField = new javax.swing.JTextField();
         sinopseTextField = new javax.swing.JTextField();
-        dataLancamentoTextField = new javax.swing.JTextField();
-        alterarJButton = new javax.swing.JButton();
         idTextField = new javax.swing.JTextField();
-        excluirButton = new javax.swing.JButton();
-        VoltarButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        filmeTable = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        cinemaTable = new javax.swing.JTable();
+        voltarBtn = new javax.swing.JLabel();
+        cadastrarBtn = new javax.swing.JLabel();
+        excluirBtn = new javax.swing.JLabel();
+        alterarBtn = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        idCinemaTextField = new javax.swing.JTextField();
+        idFilmeTextField = new javax.swing.JTextField();
+        designarBtn = new javax.swing.JLabel();
+        Fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        nomeFilmeTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("NomeFilme"));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cadastrarFilmeButton.setText("Cadastrar Filme");
-        cadastrarFilmeButton.addActionListener(new java.awt.event.ActionListener() {
+        dataLancamentoTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Data de Lançamento:"));
+        jPanel1.add(dataLancamentoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 120, -1));
+
+        nomeFilmeTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("NomeFilme"));
+        nomeFilmeTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarFilmeButtonActionPerformed(evt);
+                nomeFilmeTextFieldActionPerformed(evt);
             }
         });
+        jPanel1.add(nomeFilmeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 250, -1));
+
+        emCartazTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Em cartaz:"));
+        jPanel1.add(emCartazTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 110, -1));
+
+        sinopseTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Sinopse:"));
+        sinopseTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sinopseTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(sinopseTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 250, 150));
+
+        idTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("id"));
+        idTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(idTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 250, -1));
 
         filmeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,16 +113,17 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(filmeTable);
 
-        idFilmeTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("IdFilme"));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, 350));
 
-        idCinemaTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("IdCinema"));
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Filmes:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
 
-        designarCinemaButton.setText("Designar Cinema");
-        designarCinemaButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                designarCinemaButtonActionPerformed(evt);
-            }
-        });
+        jLabel4.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Cinema:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, -1, -1));
 
         cinemaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,166 +138,156 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(cinemaTable);
 
-        jLabel1.setText("Cinemas:");
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, -1, 190));
 
-        jLabel2.setText("Filmes:");
-
-        emCartazTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Em cartaz:"));
-
-        sinopseTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Sinopse:"));
-
-        dataLancamentoTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Data de Lançamento:"));
-
-        alterarJButton.setText("Alterar");
-        alterarJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alterarJButtonActionPerformed(evt);
+        voltarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/voltarTelas.png"))); // NOI18N
+        voltarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voltarBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                voltarBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                voltarBtnMouseExited(evt);
             }
         });
+        jPanel1.add(voltarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 640, -1, 30));
 
-        idTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("id"));
-
-        excluirButton.setText("Excluir");
-        excluirButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                excluirButtonActionPerformed(evt);
+        cadastrarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cadastrarFilm.png"))); // NOI18N
+        cadastrarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cadastrarBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cadastrarBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cadastrarBtnMouseExited(evt);
             }
         });
+        jPanel1.add(cadastrarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, -1));
 
-        VoltarButton.setText("Voltar");
-        VoltarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VoltarButtonActionPerformed(evt);
+        excluirBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/excluirFilm.png"))); // NOI18N
+        excluirBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                excluirBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                excluirBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                excluirBtnMouseExited(evt);
             }
         });
+        jPanel1.add(excluirBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, -1, -1));
+
+        alterarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alterarFilm.png"))); // NOI18N
+        alterarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                alterarBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                alterarBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                alterarBtnMouseExited(evt);
+            }
+        });
+        jPanel1.add(alterarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel3.setText("Filmes:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
+
+        idCinemaTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("IdCinema"));
+        jPanel1.add(idCinemaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 120, -1));
+
+        idFilmeTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("IdFilme"));
+        idFilmeTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idFilmeTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(idFilmeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 120, -1));
+
+        designarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/designarFilm.png"))); // NOI18N
+        designarBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                designarBtnMouseDragged(evt);
+            }
+        });
+        designarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                designarBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                designarBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                designarBtnMouseExited(evt);
+            }
+        });
+        jPanel1.add(designarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, -1, -1));
+
+        Fundo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fundoCinzaDark.png"))); // NOI18N
+        jPanel1.add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 680));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(designarCinemaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 10, Short.MAX_VALUE)
-                        .addComponent(sinopseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(dataLancamentoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(nomeFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(idFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idCinemaTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emCartazTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(79, 79, 79))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cadastrarFilmeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(alterarJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(excluirButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(243, 243, 243))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(233, 233, 233))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(VoltarButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(9, 9, 9)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nomeFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emCartazTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(sinopseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(dataLancamentoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cadastrarFilmeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                            .addComponent(alterarJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(excluirButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idFilmeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idCinemaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(69, 69, 69)
-                        .addComponent(designarCinemaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(VoltarButton)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void designarCinemaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_designarCinemaButtonActionPerformed
+    private void nomeFilmeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFilmeTextFieldActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_nomeFilmeTextFieldActionPerformed
 
-        Integer idFilme;
-        Integer idCine;
+    private void sinopseTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sinopseTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sinopseTextFieldActionPerformed
 
-        idFilme = Integer.parseInt(idFilmeTextField.getText());
-        idCine = Integer.parseInt(idCinemaTextField.getText());
+    private void idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idTextFieldActionPerformed
 
-        VincularCinema vincCine = new VincularCinema();
-        vincCine.setIdVincFilme(idFilme);
-        vincCine.setIdVincCine(idCine);
+    private void voltarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarBtnMouseClicked
+        // TODO add your handling code here:
+         TelaPrincipal telaprincipal = new TelaPrincipal();
+        
+        
+        telaprincipal.emailCache = emailCache;
+        telaprincipal.exibirBotao();
+        telaprincipal.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_voltarBtnMouseClicked
 
-        DAO dao = new DAO();
-        dao.vincularCinema(vincCine);
+    private void voltarBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarBtnMouseEntered
+        // TODO add your handling code here:
+        ImageIcon btnVoltar = new ImageIcon(getClass().getResource("/voltarTelas1.png"));
+        voltarBtn.setIcon(btnVoltar);
+        Cursor crs = new Cursor(Cursor.HAND_CURSOR);
+        voltarBtn.setCursor(crs);
+    }//GEN-LAST:event_voltarBtnMouseEntered
 
+    private void voltarBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarBtnMouseExited
+        // TODO add your handling code here:
+        ImageIcon btnVoltar = new ImageIcon(getClass().getResource("/voltarTelas.png"));
+        voltarBtn.setIcon(btnVoltar);
+        
+    }//GEN-LAST:event_voltarBtnMouseExited
 
-    }//GEN-LAST:event_designarCinemaButtonActionPerformed
-
-    private void cadastrarFilmeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarFilmeButtonActionPerformed
-        // TODO add your handling code here:       
+    private void cadastrarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarBtnMouseClicked
+        // TODO add your handling code here:
         String nomeFilme;
         Integer emCartaz;
         String sinopse;
@@ -294,30 +313,100 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Valor digitado errado");
         }
 
+    }//GEN-LAST:event_cadastrarBtnMouseClicked
 
-    }//GEN-LAST:event_cadastrarFilmeButtonActionPerformed
+    private void cadastrarBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarBtnMouseEntered
+        // TODO add your handling code here:
+        ImageIcon btnCadastrar = new ImageIcon(getClass().getResource("/cadastrarFilm1.png"));
+        cadastrarBtn.setIcon(btnCadastrar);
+        Cursor crs = new Cursor(Cursor.HAND_CURSOR);
+        cadastrarBtn.setCursor(crs);
+    }//GEN-LAST:event_cadastrarBtnMouseEntered
 
-    private void alterarJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarJButtonActionPerformed
+    private void cadastrarBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarBtnMouseExited
+        // TODO add your handling code here:
+        ImageIcon btnCadastrar = new ImageIcon(getClass().getResource("/cadastrarFilm.png"));
+        cadastrarBtn.setIcon(btnCadastrar);
+        
+    }//GEN-LAST:event_cadastrarBtnMouseExited
+
+    private void alterarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alterarBtnMouseClicked
         // TODO add your handling code here:
         AlterarFilme();
         listarFilmesTabela();
-    }//GEN-LAST:event_alterarJButtonActionPerformed
+    }//GEN-LAST:event_alterarBtnMouseClicked
 
-    private void excluirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirButtonActionPerformed
+    private void alterarBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alterarBtnMouseEntered
+        // TODO add your handling code here:
+        ImageIcon btnAlterar = new ImageIcon(getClass().getResource("/alterarFilm1.png"));
+        alterarBtn.setIcon(btnAlterar);
+        Cursor crs = new Cursor(Cursor.HAND_CURSOR);
+        alterarBtn.setCursor(crs);
+    }//GEN-LAST:event_alterarBtnMouseEntered
+
+    private void alterarBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alterarBtnMouseExited
+        // TODO add your handling code here:
+        ImageIcon btnAlterar = new ImageIcon(getClass().getResource("/alterarFilm.png"));
+        alterarBtn.setIcon(btnAlterar);
+    }//GEN-LAST:event_alterarBtnMouseExited
+
+    private void excluirBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirBtnMouseClicked
         // TODO add your handling code here:
         ExcluirFilme();
         listarFilmesTabela();
-    }//GEN-LAST:event_excluirButtonActionPerformed
+    }//GEN-LAST:event_excluirBtnMouseClicked
 
-    private void VoltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarButtonActionPerformed
-        TelaPrincipal telaprincipal = new TelaPrincipal();
-        
-        
-        telaprincipal.emailCache = emailCache;
-        telaprincipal.exibirBotao();
-        telaprincipal.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_VoltarButtonActionPerformed
+    private void excluirBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirBtnMouseEntered
+        // TODO add your handling code here:
+        ImageIcon btnExcluir = new ImageIcon(getClass().getResource("/excluirFilm1.png"));
+        excluirBtn.setIcon(btnExcluir);
+        Cursor crs = new Cursor(Cursor.HAND_CURSOR);
+        excluirBtn.setCursor(crs);
+    }//GEN-LAST:event_excluirBtnMouseEntered
+
+    private void excluirBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirBtnMouseExited
+        // TODO add your handling code here:
+        ImageIcon btnExcluir = new ImageIcon(getClass().getResource("/excluirFilm.png"));
+        excluirBtn.setIcon(btnExcluir);
+    }//GEN-LAST:event_excluirBtnMouseExited
+
+    private void idFilmeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFilmeTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idFilmeTextFieldActionPerformed
+
+    private void designarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_designarBtnMouseClicked
+        // TODO add your handling code here:
+        Integer idFilme;
+        Integer idCine;
+
+        idFilme = Integer.parseInt(idFilmeTextField.getText());
+        idCine = Integer.parseInt(idCinemaTextField.getText());
+
+        VincularCinema vincCine = new VincularCinema();
+        vincCine.setIdVincFilme(idFilme);
+        vincCine.setIdVincCine(idCine);
+
+        DAO dao = new DAO();
+        dao.vincularCinema(vincCine);
+    }//GEN-LAST:event_designarBtnMouseClicked
+
+    private void designarBtnMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_designarBtnMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_designarBtnMouseDragged
+
+    private void designarBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_designarBtnMouseEntered
+        // TODO add your handling code here:
+        ImageIcon btnDesignar = new ImageIcon(getClass().getResource("/designarFilm1.png"));
+        designarBtn.setIcon(btnDesignar);
+        Cursor crs = new Cursor(Cursor.HAND_CURSOR);
+        designarBtn.setCursor(crs);
+    }//GEN-LAST:event_designarBtnMouseEntered
+
+    private void designarBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_designarBtnMouseExited
+        // TODO add your handling code here:
+        ImageIcon btnDesignar = new ImageIcon(getClass().getResource("/designarFilm.png"));
+        designarBtn.setIcon(btnDesignar);
+    }//GEN-LAST:event_designarBtnMouseExited
 
     /**
      * @param args the command line arguments
@@ -355,24 +444,27 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton VoltarButton;
-    private javax.swing.JButton alterarJButton;
-    private javax.swing.JButton cadastrarFilmeButton;
+    private javax.swing.JLabel Fundo;
+    private javax.swing.JLabel alterarBtn;
+    private javax.swing.JLabel cadastrarBtn;
     private javax.swing.JTable cinemaTable;
     private javax.swing.JTextField dataLancamentoTextField;
-    private javax.swing.JButton designarCinemaButton;
+    private javax.swing.JLabel designarBtn;
     private javax.swing.JTextField emCartazTextField;
-    private javax.swing.JButton excluirButton;
+    private javax.swing.JLabel excluirBtn;
     private javax.swing.JTable filmeTable;
     private javax.swing.JTextField idCinemaTextField;
     private javax.swing.JTextField idFilmeTextField;
     private javax.swing.JTextField idTextField;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nomeFilmeTextField;
     private javax.swing.JTextField sinopseTextField;
+    private javax.swing.JLabel voltarBtn;
     // End of variables declaration//GEN-END:variables
 
     private void listarFilmesTabela() {
