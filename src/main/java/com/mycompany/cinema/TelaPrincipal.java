@@ -581,7 +581,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 model.addRow(new Object[]{
                     listaFilme.get(num).getId(),
                     listaFilme.get(num).getNomeFilme(),
-                    listaFilme.get(num).getCartaz()
+                    listaFilme.get(num).getDataLancamento()
                 });
 
             }
@@ -608,7 +608,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 model.addRow(new Object[]{
                     listaFilmeCartaz.get(num).getId(),
                     listaFilmeCartaz.get(num).getNomeFilme(),
-                    listaFilmeCartaz.get(num).getCartaz()
+                    listaFilmeCartaz.get(num).getDataLancamento()
                 });
 
             }
