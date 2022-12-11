@@ -75,7 +75,7 @@ public class LoginTela extends javax.swing.JFrame {
         });
         jPanel1.add(cadastrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
 
-        sair1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sair.png"))); // NOI18N
+        sair1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sair2.png"))); // NOI18N
         sair1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sair1MouseClicked(evt);
@@ -173,7 +173,7 @@ public class LoginTela extends javax.swing.JFrame {
 
     private void sair1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sair1MouseEntered
         // TODO add your handling code here:
-        ImageIcon btnCadastro = new ImageIcon(getClass().getResource("/sair1.png"));
+        ImageIcon btnCadastro = new ImageIcon(getClass().getResource("/sair3.png"));
         sair1.setIcon(btnCadastro);
         Cursor crs = new Cursor(Cursor.HAND_CURSOR);
         sair1.setCursor(crs);
@@ -181,7 +181,7 @@ public class LoginTela extends javax.swing.JFrame {
 
     private void sair1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sair1MouseExited
         // TODO add your handling code here:
-        ImageIcon btnCadastro = new ImageIcon(getClass().getResource("/sair.png"));
+        ImageIcon btnCadastro = new ImageIcon(getClass().getResource("/sair2.png"));
         sair1.setIcon(btnCadastro);
     }//GEN-LAST:event_sair1MouseExited
 

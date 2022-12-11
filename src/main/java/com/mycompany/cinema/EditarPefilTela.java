@@ -49,7 +49,6 @@ public class EditarPefilTela extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        idLabel.setForeground(new java.awt.Color(255, 255, 255));
         idLabel.setBorder(javax.swing.BorderFactory.createTitledBorder("ID:"));
         idLabel.setOpaque(true);
         jPanel1.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 160, 52));
@@ -78,6 +77,7 @@ public class EditarPefilTela extends javax.swing.JFrame {
         });
         jPanel1.add(senhaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 154, 66));
 
+        emailTextField.setEditable(false);
         emailTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Email:"));
         emailTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

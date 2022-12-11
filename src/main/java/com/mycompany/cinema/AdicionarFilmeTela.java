@@ -26,6 +26,8 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
     
     public String emailCache;
     
+    
+    
     /**
      * Creates new form AdicionarFilmeTela
      */
@@ -48,7 +50,6 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         dataLancamentoTextField = new javax.swing.JTextField();
         nomeFilmeTextField = new javax.swing.JTextField();
         emCartazTextField = new javax.swing.JTextField();
-        sinopseTextField = new javax.swing.JTextField();
         idTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         filmeTable = new javax.swing.JTable();
@@ -64,6 +65,9 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         idCinemaTextField = new javax.swing.JTextField();
         idFilmeTextField = new javax.swing.JTextField();
         designarBtn = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        sinopseArea = new javax.swing.JTextArea();
         Fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,14 +87,6 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
 
         emCartazTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Em cartaz:"));
         jPanel1.add(emCartazTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 110, -1));
-
-        sinopseTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Sinopse:"));
-        sinopseTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sinopseTextFieldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(sinopseTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 250, 150));
 
         idTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("id"));
         idTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -230,6 +226,19 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         });
         jPanel1.add(designarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, -1, -1));
 
+        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel1.setText("0- Fora de cartaz               1- Em cartaz");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, -1, 20));
+
+        sinopseArea.setColumns(20);
+        sinopseArea.setRows(5);
+        sinopseArea.setLineWrap(true);
+        sinopseArea.setAutoscrolls(false);
+        sinopseArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Sinopse:"));
+        jScrollPane3.setViewportView(sinopseArea);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 250, 150));
+
         Fundo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fundoCinzaDark.png"))); // NOI18N
         jPanel1.add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 680));
@@ -251,10 +260,6 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
     private void nomeFilmeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFilmeTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeFilmeTextFieldActionPerformed
-
-    private void sinopseTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sinopseTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sinopseTextFieldActionPerformed
 
     private void idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextFieldActionPerformed
         // TODO add your handling code here:
@@ -295,7 +300,7 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
 
         nomeFilme = nomeFilmeTextField.getText();
         emCartaz = Integer.parseInt(emCartazTextField.getText());
-        sinopse = sinopseTextField.getText();
+        sinopse = sinopseArea.getText();
         dataLancamento = dataLancamentoTextField.getText();
 
         if (emCartaz <= 1) {
@@ -456,14 +461,16 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
     private javax.swing.JTextField idCinemaTextField;
     private javax.swing.JTextField idFilmeTextField;
     private javax.swing.JTextField idTextField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField nomeFilmeTextField;
-    private javax.swing.JTextField sinopseTextField;
+    private javax.swing.JTextArea sinopseArea;
     private javax.swing.JLabel voltarBtn;
     // End of variables declaration//GEN-END:variables
 
@@ -550,7 +557,7 @@ public class AdicionarFilmeTela extends javax.swing.JFrame {
         id = Integer.parseInt(idTextField.getText());
         nomeFilme = nomeFilmeTextField.getText();
         cartaz = Integer.parseInt(emCartazTextField.getText());
-        sinopse = sinopseTextField.getText();
+        sinopse = sinopseArea.getText();
         dataLancamento = dataLancamentoTextField.getText();
 
         Filme filme = new Filme();

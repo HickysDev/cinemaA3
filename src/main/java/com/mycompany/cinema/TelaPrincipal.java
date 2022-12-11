@@ -195,7 +195,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 CinemasMouseExited(evt);
             }
         });
-        jPanel1.add(Cinemas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
+        jPanel1.add(Cinemas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, -1, -1));
 
         Perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/perfilBTN.png"))); // NOI18N
         Perfil.addMouseListener(new java.awt.event.MouseAdapter() {

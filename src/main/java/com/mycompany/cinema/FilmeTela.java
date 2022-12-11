@@ -69,6 +69,7 @@ public class FilmeTela extends javax.swing.JFrame {
 
         sinopseText.setEditable(false);
         sinopseText.setColumns(20);
+        sinopseText.setLineWrap(true);
         sinopseText.setRows(5);
         jScrollPane3.setViewportView(sinopseText);
 
@@ -185,7 +186,7 @@ public class FilmeTela extends javax.swing.JFrame {
         System.out.println(filme.getNomeFilme());
         
         nomeFilmeText.setText(filme.getNomeFilme());
-        dataText.setText(filme.getSinopse());
+        dataText.setText(filme.getDataLancamento());
         sinopseText.setText(filme.getSinopse());
         
     }
